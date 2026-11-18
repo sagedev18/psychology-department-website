@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="ESUT Department of Psychology website - programmes, news, resources, contact.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs - Department of Psychology | ESUT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="logo-section">
+                        <img src="Enugu-State-University-of-Science-and-Technology-logo.jpg" alt="ESUT Logo" class="logo-img">
+                        <div class="logo-text">
+                            <h1>Department of Psychology</h1>
+                            <p class="logo-subtext">Enugu State University of Science and Technology</p>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar" id="navBar"><div class="container">                                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li class="nav-item active"><a href="programs.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Programs</a></li>
+                    <li class="nav-item"><a href="academics.html" class="nav-link"><i class="fas fa-book-open"></i> Academics</a></li>
+                    <li class="nav-item"><a href="news.html" class="nav-link"><i class="fas fa-newspaper"></i> News & Events</a></li>
+                    <li class="nav-item"><a href="staff.html" class="nav-link"><i class="fas fa-users"></i> Staff</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+
+</div></nav>
+    </header>
+
+    <main id="main-content"><section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">Academic Programs</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li>Programs</li>
+            
+        </div>
+    </section>
+
+    <section class="page-content">
+        <div class="container">
+            <div class="content-card" id="undergrad4">
+                <h2>Undergraduate Programs</h2>
+                <h3>4-Year Programme (Bachelor of Science in Psychology)</h3>
+                <p>A four-year degree programme for candidates admitted through UTME with the requisite O’Level credits.</p>
+                <p><strong>Duration:</strong> 4 Years</p>
+            </div>
+            <div class="content-card" id="undergrad3">
+                <h3>3-Year Programme (Direct Entry)</h3>
+                <p>A three-year degree programme for candidates with appropriate A’Level qualifications or equivalent.</p>
+                <p><strong>Duration:</strong> 3 Years</p>
+            </div>
+            <div class="content-card">
+                <button class="accordion-btn" type="button" aria-expanded="false">
+                    <span><i class="fas fa-book-reader"></i> Institute of Continuing Studies (ICS)</span>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </button>
+                <div class="accordion-content">
+                    <div class="sub-section" id="ics3">
+                        <h3>3-Year Programme</h3>
+                        <p><strong>Duration:</strong> 3 Years</p>
+                    </div>
+                    <div class="sub-section" id="ics4">
+                        <h3>4-Year Programme</h3>
+                        <p><strong>Duration:</strong> 4 Years</p>
+                    </div>
+                    <div class="sub-section" id="ics5">
+                        <h3>5-Year Programme</h3>
+                        <p><strong>Duration:</strong> 5 Years</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-card" id="pgd">
+                <h2>Postgraduate Programs</h2>
+                <h3>Postgraduate Diploma (PGD) in Psychology</h3>
+                <p><strong>Duration:</strong> Minimum of 2 Semesters</p>
+            </div>
+            <div class="content-card" id="msc">
+                <h3>Master of Science (MSc) in Psychology</h3>
+                <p><strong>Duration:</strong> Full-time/Part-time as specified by regulations</p>
+            </div>
+            <div class="content-card" id="phd">
+                <h3>Doctor of Philosophy (PhD) in Psychology</h3>
+                <p><strong>Duration:</strong> Full-time/Part-time as specified by regulations</p>
+            </div>
+
+            <div class="content-card">
+               <h2>Admission Requirements</h2>
+               <p><strong>For a four-year course:</strong> In addition to UTME score, the candidate should possess a Senior School Certificate with at least five credit passes, including Mathematics, English and Biology at not more than two sittings.</p>
+               <p style="margin-top:12px;"><strong>For the three-year programme:</strong> Candidates shall possess five SSC credit passes, two of which must be at Advanced Level. For emphasis, English, Mathematics, and any of the following: Biology, Health Science, Agricultural Science, Animal Husbandry and Economics are required at credit passes. Candidates with ND, NCE, Nursing and Midwifery qualifications are also eligible.</p>
+            </div>
+
+            <div class="content-card">
+               <h2>Graduation Requirements</h2>
+               <ul class="feature-list">
+                   <li>Completed and passed all the courses registered for, including all compulsory and required courses as prescribed by the University/Faculty.</li>
+                   <li>Obtained a minimum CGPA specified by the University but not less than 1.0.</li>
+                   <li>Earned the minimum credit units of not less than 120 for a four-year programme and 90 for a three-year programme.</li>
+               </ul>
+            </div>
+            <div id="programsList" aria-label="Programme catalogue"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Department of Psychology</h3>
+                    <p>ESUT</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ESUT Campus, Agbani, Enugu State, Nigeria</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="news.html">News &amp; Events</a></li>
+                        <li><a href="staff.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> psychology@esut.edu.ng</p>
+                    <p><i class="fas fa-phone"></i> +234 (0) 800 000 0000</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Department of Psychology, ESUT. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="site-data.js"></script>
+    <script>
+        document.querySelectorAll('.accordion-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const isOpen = btn.classList.contains('active');
+
+                document.querySelectorAll('.accordion-btn').forEach((otherBtn) => {
+                    otherBtn.classList.remove('active');
+                    otherBtn.setAttribute('aria-expanded', 'false');
+                    const otherContent = otherBtn.nextElementSibling;
+                    if (otherContent) {
+                        otherContent.classList.remove('open');
+                    }
+                });
+
+                if (!isOpen) {
+                    btn.classList.add('active');
+                    btn.setAttribute('aria-expanded', 'true');
+                    if (content) content.classList.add('open');
+                }
+            });
+        });
+
+        const programsData = window.ESUTData.load();
+        const programsList = document.getElementById('programsList');
+        if (programsList) {
+            programsList.innerHTML = '';
+        }
+    </script>
+    <script src="app.js"></script>
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="admin-modal" style="display:none;">
+        <div class="admin-modal-content">
+            <span class="admin-close" onclick="closeAdminDashboard()">&times;</span>
+            <div id="adminLoginFormContainer">
+                <h3>Admin Login</h3>
+                <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input type="text" id="adminUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p id="adminLoginMessage" style="color:red; margin-top:10px;"></p>
+            </div>
+            <div id="adminPanel" style="display:none; margin-top:20px;">
+                <h3>Admin Panel</h3>
+                <button onclick="showNewsManager()" class="btn btn-secondary">Manage News & Events</button>
+                <button onclick="window.location.href='admin website/dashboard.html'" class="btn btn-primary">Open Full Dashboard</button>
+                <button onclick="closeAdminDashboard()" class="btn btn-secondary">Close</button>
+            </div>
+            <div id="newsManager" style="display:none; margin-top:20px;">
+                <h3>News & Events Manager</h3>
+                <form id="newsForm" onsubmit="addNews(event)">
+                    <div class="form-group">
+                        <label for="newsTitle">Title</label>
+                        <input type="text" id="newsTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newsSummary">Summary</label>
+                        <textarea id="newsSummary" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="newsCategory">Category</label>
+                        <select id="newsCategory">
+                            <option value="Announcement">Announcement</option>
+                            <option value="Seminar">Seminar</option>
+                            <option value="Event">Event</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add News</button>
+                    <button type="button" onclick="showNewsManager()" class="btn btn-secondary">Back</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
