@@ -1,0 +1,48 @@
+                                <article class="course-description-item">
+                                    <div class="description-header">
+                                        <span class="course-sequence">9</span>
+                                        <span class="course-code">AIPSY 102</span>
+                                        <span class="course-title">Artificial Intelligence, Digital Ethics and Data Protection for Psychologists</span>
+                                        <span class="course-meta">Level 100 · Second Semester · 2 Units · Compulsory · Lecture 30 h / Practical 0 h</span>
+                                    </div>
+                                    <div class="description-body">
+                                        <h4>Technology focus</h4>
+                                        <p>This dedicated ethics-and-foundations course gives the student an accurate working model of what artificial intelligence, machine learning, deep learning and generative AI are and are not and, in equal measure, the Nigerian law and professional responsibility that must govern their use in psychology.</p>
+                                        <h4>Toolbox</h4>
+                                        <table>
+                                            <tr><th>Tool / technology</th><th>What the student uses it for</th></tr>
+                                            <tr><td>General AI assistants (ChatGPT, Claude, Gemini)</td><td>Observe capability and, deliberately, failure and hallucination</td></tr>
+                                            <tr><td>NDPA 2023 & NDPC GAID 2025 (texts)</td><td>Locate lawful basis, DPO, breach and DPIA duties</td></tr>
+                                            <tr><td>Nigeria National AI Strategy (2025)</td><td>Read the responsible AI principles the country has adopted</td></tr>
+                                            <tr><td>AI incident & bias case libraries</td><td>Study real harm from unsafe or biased deployments</td></tr>
+                                            <tr><td>Model cards / data-sheet templates</td><td>Document an AI model's purpose, data and limits</td></tr>
+                                        </table>
+                                        <h4>Practical lab drills</h4>
+                                        <ul>
+                                            <li>Prompt an assistant on a psychology question and document at least one confident error.</li>
+                                            <li>Map a data-processing activity to its lawful basis under the NDPA 2023 and flag missing safeguards.</li>
+                                            <li>Write a one-page model card for a simple model in the discipline.</li>
+                                            <li>Debate a real AI-harm case and assign professional responsibility under the ethical code of the Nigerian Psychological Association.</li>
+                                        </ul>
+                                        <h4>Identification skills</h4>
+                                        <ul>
+                                            <li>Tell apart rule-based automation, machine learning and generative AI from a plain description.</li>
+                                            <li>Identify a hallucinated or unsupported AI claim and the verification step that exposes it.</li>
+                                            <li>Recognize personal and sensitive data in a psychology context and the duties each trigger.</li>
+                                        </ul>
+                                        <h4>Local application and startup lens</h4>
+                                        <p>The course grounds ethics in Nigerian realities: the extreme sensitivity of mental-health and behavioral data; the risk that biased models mislabel or harm vulnerable people; the dangers of unsafe AI "therapy" tools; and the National AI Strategy's responsible-AI principles applied to human wellbeing.</p>
+                                        <h4>Ethics and professional responsibility</h4>
+                                        <p>The whole course is the ethics course: the right to privacy under section 37 of the Constitution of the Federal Republic of Nigeria 1999; the core duties of the NDPA 2023 lawful basis (s.25), the data-protection principles (s.24), sensitive data (s.30), the Data Protection Officer (s.32) and breach notification (s.40) as operationalized by the NDPC GAID 2025; the responsible-AI principles of the National AI Strategy (2025); intellectual property under the Copyright Act 2022; and the duties imposed by the ethical code of the Nigerian Psychological Association.</p>
+                                        <h4>Learning outcomes</h4>
+                                        <p>On completion, the student should be able to:</p>
+                                        <ul>
+                                            <li>Explain accurately what AI, ML, deep learning and generative AI are and where each fit.</li>
+                                            <li>Identify personal and sensitive data and the duties the NDPA 2023 attaches to processing it.</li>
+                                            <li>Apply the responsible-AI principles of the National AI Strategy to a scenario in the discipline.</li>
+                                            <li>Reason about bias, hallucination and professional responsibility under the ethical code of the Nigerian Psychological Association.</li>
+                                        </ul>
+                                        <h4>Course contents</h4>
+                                        <p>What AI is and is not: a plain-language model of machine learning, deep learning, generative AI and large language models; capabilities, limits, hallucination and bias. The data lifecycle and personal versus sensitive versus non-personal data. The Nigerian legal frame: the Constitution 1999 (s.37); the NDPA 2023 and the NDPC GAID 2025; the National AI Strategy (2025); and the Copyright Act 2022. Professional responsibility under the ethical code of the Nigerian Psychological Association. Seminar, case study and structured debate.</p>
+                                    </div>
+                                </article>

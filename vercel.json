@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "name": "esut-psychology-department",
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static-build" },
+    { "src": "staff/**", "use": "@vercel/static" },
+    { "src": "admin website/**", "use": "@vercel/static" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "*.jpg", "use": "@vercel/static" },
+    { "src": "*.png", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/staff/(.*)", "headers": { "Cache-Control": "public, max-age=31536000, immutable" }, "status": 200 },
+    { "src": "/(.*\\.(css|js|jpg|png))$", "headers": { "Cache-Control": "public, max-age=31536000, immutable" }, "status": 200 },
+    { "src": "/admin website/(.*)", "dest": "/admin website/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

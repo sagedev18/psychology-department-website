@@ -1,0 +1,103 @@
+== MAPPING (JSON key -> html article) ==
+ESUT-PSY 106     title=Psychology of African Belief System
+                 meta=2 Units; Core; LH= 30
+                 -> ['course-ESUT-PSY106']
+      course-ESUT-PSY106     line=395   seq=13   codeText='ESUT-PSY106' titleMatch=True metaMatch=False ph=True h4=['No course description for this course.']
+      JSON sections=[('Senate-approved relevance', 1), ('Overview', 2), ('Objectives', 7), ('Learning Outcomes', 6), ('Course Contents', 1)] paragraphs=17 chars=3528
+ESUT-PSY 107     title=Information and Communication Psychology
+                 meta=2 Units; Elective; LH= 30
+                 -> ['course-ESUT-PSY107']
+      course-ESUT-PSY107     line=185   seq=5    codeText='ESUT-PSY107' titleMatch=True metaMatch=False ph=True h4=['No course description for this course.']
+      JSON sections=[('Senate-approved relevance', 1), ('Overview', 2), ('Objectives', 16), ('Course Contents', 1)] paragraphs=20 chars=3070
+ESUT-PSY 108     title=Psychology of Harmony
+                 meta=2 Units; Core; LH= 30
+                 -> ['course-ESUT-PSY108']
+      course-ESUT-PSY108     line=407   seq=14   codeText='ESUT-PSY108' titleMatch=True metaMatch=False ph=True h4=['No course description for this course.']
+      JSON sections=[('Senate-approved relevance', 1), ('Overview', 17), ('Course Contents', 1)] paragraphs=19 chars=4519
+ESUT-PSY 109     title=Suicide Markers and Prevention
+                 meta=2 Units; Core; LH= 30
+                 -> ['course-ESUT-PSY109']
+      course-ESUT-PSY109     line=197   seq=6    codeText='ESUT-PSY109' titleMatch=False metaMatch=False ph=True h4=['No course description for this course.']
+      JSON sections=[('Senate-approved relevance', 1), ('Overview', 2), ('Objectives', 8), ('Learning Outcomes', 10), ('Course Contents', 1)] paragraphs=22 chars=4280
+ESUT-PSY 110     title=Psychology of Sexual Deviance and Prevention
+                 meta=2 Units; Elective; LH= 30
+                 -> ['course-ESUT-PSY-110']
+      course-ESUT-PSY-110    line=419   seq=15   codeText='ESUT-PSY 110' titleMatch=True metaMatch=False ph=True h4=['No course description for this course.']
+      JSON sections=[('Senate-approved relevance', 1), ('Overview', 2), ('Objectives', 7), ('Learning Outcome', 7), ('Course Contents', 1)] paragraphs=18 chars=3838
+ESUT-PSY 111     title=Psychology of Social Judgment and Decision Making
+                 meta=2 units; Elective; LH= 30
+                 -> ['course-ESUT-PSY-111']
+      course-ESUT-PSY-111    line=209   seq=7    codeText='ESUT-PSY 111' titleMatch=True metaMatch=False ph=True h4=['No course description for this course.']
+      JSON sections=[('Senate-approved relevance', 1), ('Overview', 2), ('Objectives', 7), ('Learning Outcomes', 7), ('Course Contents', 1)] paragraphs=18 chars=3688
+ESUT-PSY 112     title=Psychology of Adolescence and Reproductive Health
+                 meta=2 Units; Core; LH= 30
+                 -> ['course-ESUT-PSY-112']
+      course-ESUT-PSY-112    line=431   seq=16   codeText='ESUT-PSY 112' titleMatch=True metaMatch=False ph=True h4=['No course description for this course.']
+      JSON sections=[('Senate-approved relevance', 1), ('Overview', 2), ('Objectives', 11), ('Learning Outcomes', 13)] paragraphs=27 chars=4554
+ESUT-PSY 113     title=Psychology of Mental Health and Well-being
+                 meta=2 Units; Elective; LH= 30
+                 -> []
+      JSON sections=[('Senate-approved relevance', 2), ('Overview', 2), ('Objectives', 22)] paragraphs=26 chars=4544
+ESUT-PSY 114     title=Psychology of Peace and Conflict Management
+                 meta=2 Units; Core; LH= 30
+                 -> ['course-ESUT-PSY-114']
+      course-ESUT-PSY-114    line=443   seq=17   codeText='ESUT-PSY 114' titleMatch=True metaMatch=False ph=True h4=['No course description for this course.']
+      JSON sections=[('Senate-approved relevance', 1), ('Overview', 8), ('Learning Outcomes', 6), ('Course Contents', 1)] paragraphs=16 chars=3492
+
+== HTML PSY articles with NO json match ==
+course-PSY-101 code='PSY 101' title='Introduction to Psychology' line=110
+course-PSY-103 code='PSY 103' title='Learning Processes I' line=133
+course-PSY-105 code='PSY 105' title='Ethics in Psychology' line=162
+course-AIPSY-101 code='AIPSY 101' title='Digital Methods and Data Foundations for Psychology' line=221
+course-PSY-102 code='PSY 102' title='Determinants of Behaviour' line=350
+course-PSY-104 code='PSY 104' title='Quantitative Methods in Psychology' line=371
+course-AIPSY-102 code='AIPSY 102' title='Artificial Intelligence, Digital Ethics and Data Protection for Psychologists' line=455
+course-PSY-201 code='PSY 201' title='General Experimental Psychology' line=534
+course-PSY-203 code='PSY 203' title='Industrial/Organisational Psychology' line=560
+course-PSY-205 code='PSY 205' title='Developmental Psychology I: Childhood and Adolescence' line=586
+course-PSY-207 code='PSY 207' title='Psychology of Personality and Assessment' line=610
+course-PSY-209 code='PSY 209' title='Health Psychology' line=637
+course-ESUT-PSY-211 code='ESUT-PSY 211' title='Psychology of Inter-Communal Relations' line=699
+course-AIPSY-201 code='AIPSY 201' title='Applied Machine Learning for Behavioral Data' line=734
+course-PSY-202 code='PSY 202' title='Physiological Psychology' line=883
+course-PSY-204 code='PSY 204' title='Introduction to Social Psychology' line=909
+course-PSY-206 code='PSY 206' title='Developmental Psychology II: Adulthood and Aging' line=932
+course-PSY-208 code='PSY 208' title='Positive Psychology' line=953
+course-ESUT-PSY-210 code='ESUT-PSY 210' title='Psychology of Personnel and Human Resource Management' line=1028
+course-AIPSY-202 code='AIPSY 202' title='Computational Psychometrics and Quantitative Methods' line=1067
+course-PSY-301 code='PSY 301' title='Clinical Psychology' line=1145
+course-PSY-303 code='PSY 303' title='Gender Psychology' line=1167
+course-PSY-305 code='PSY 305' title='Psychological Testing and Test Construction' line=1189
+course-PSY-307 code='PSY 307' title='Statistical Methods in Psychology' line=1213
+course-PSY-309 code='PSY 309' title='Cognitive Psychology' line=1236
+course-ESUT-PSY-311 code='ESUT-PSY 311' title='Psychology of Relations and Marital Life' line=1264
+course-ESUT-PSY-313 code='ESUT-PSY 313' title='Psychology of Work, Family and Life Interface' line=1303
+course-AIPSY-301 code='AIPSY 301' title='Natural Language Processing and Affective Computing for Mental Health' line=1342
+course-AIPSY-303 code='AIPSY 303' title='Digital Mental-Health Tools and Behavioral Sensing' line=1392
+course-PSY-302 code='PSY 302' title='Psychology of Mental Challenge' line=1565
+course-PSY-304 code='PSY 304' title='Psychology of Substance Use Disorder' line=1586
+course-PSY-306 code='PSY 306' title='Research Methods in Psychology' line=1609
+course-PSY-308 code='PSY 308' title='Environmental Psychology' line=1635
+course-PSY-310 code='PSY 310' title='Field Experience' line=1661
+course-AIPSY-302 code='AIPSY 302' title='Generative AI and Agentic Systems for Psychological Practice' line=1679
+course-PSY-401 code='PSY 401' title='Psychology of Terrorism and Trauma Management' line=1756
+course-PSY-403 code='PSY 403' title='Practicum in Psychotherapy' line=1782
+course-PSY-405 code='PSY 405' title='Forensic Psychology' line=1809
+course-PSY-407 code='PSY 407' title='Psychology of Social Change' line=1833
+course-ESUT-PSY-409 code='ESUT-PSY 409' title='Marketing and Consumer Psychology' line=1854
+course-ESUT-PSY-411 code='ESUT-PSY 411' title='Psychology of Security Personnel Management' line=1877
+course-ESUT-PSY-413 code='ESUT-PSY 413' title='Child Abuse' line=1898
+course-AIPSY-401 code='AIPSY 401' title='Responsible Artificial Intelligence in Mental Health and Human-Centered Systems' line=1922
+course-AIPSY-403 code='AIPSY 403' title='Technology Law, AI Governance and the Wellbeing-Technology Innovation Venture' line=1972
+course-PSY-402 code='PSY 402' title='Advanced Psycho-biological Study of Behaviour and Psychopharmacology' line=2078
+course-PSY-404 code='PSY 404' title='Advanced Clinical Psychology' line=2105
+course-PSY-406 code='PSY 406' title='Research Project' line=2127
+course-ESUT-PSY-408 code='ESUT-PSY 408' title='Psychology of Occupational, Vocational and Career Development' line=2148
+course-ESUT-PSY-410 code='ESUT-PSY 410' title='Psychology of Industrial Relations' line=2171
+course-ESUT-PSY-412 code='ESUT-PSY 412' title='Psychology of Death, Grief and Bereavement' line=2194
+course-ESUT-PSY-414 code='ESUT-PSY 414' title='Psychology of Ageing and Life Satisfaction' line=2218
+course-AIPSY-402 code='AIPSY 402' title='Data Security, Privacy Engineering and Online Safety for Psychology' line=2241
+course-AIPSY-404 code='AIPSY 404' title='Applied Psychological-AI Capstone: Build, Deploy and Defend' line=2291
+
+== JSON keys with NO html article ==
+ESUT-PSY 113

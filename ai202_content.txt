@@ -1,0 +1,50 @@
+                                <article class="course-description-item">
+                                    <div class="description-header">
+                                        <span class="course-sequence">9</span>
+                                        <span class="course-code">AIPSY 202</span>
+                                        <span class="course-title">Computational Psychometrics and Quantitative Methods</span>
+                                        <span class="course-meta">Level 200 · Second Semester · 2 Units · Compulsory · Lecture 30 h / Practical 45 h</span>
+                                    </div>
+                                    <div class="description-body">
+                                        <h4>Technology focus</h4>
+                                        <p>A signature course modernizing measurement: classical and modern psychometrics item-response theory, factor analysis and computerized adaptive testing combined with machine learning for scale development and validation.</p>
+                                        <h4>Toolbox</h4>
+                                        <table>
+                                            <tr><th>Tool / technology</th><th>What the student uses it for</th></tr>
+                                            <tr><td>R: psych, lavaan, mirth</td><td>Factor analysis, SEM and IRT</td></tr>
+                                            <tr><td>Python: factor analyzer, simony</td><td>Measurement modelling</td></tr>
+                                            <tr><td>CAT simulation tools</td><td>Adaptive-testing design</td></tr>
+                                            <tr><td>Reliability/validity tooling</td><td>Scale evaluation</td></tr>
+                                            <tr><td>Visualization (ggplot2)</td><td>Measurement diagnostics</td></tr>
+                                            <tr><td>Open instruments & datasets</td><td>Responsible reuse for validation</td></tr>
+                                        </table>
+                                        <h4>Practical lab drills</h4>
+                                        <ul>
+                                            <li>Develop and validate a scale with factor analysis and reliability.</li>
+                                            <li>Fit an IRT model and interpret item parameters.</li>
+                                            <li>Simulate a computerized adaptive test.</li>
+                                            <li>Test measurement invariance across groups.</li>
+                                            <li>Document a psychometric validation reproducibly.</li>
+                                        </ul>
+                                        <h4>Identification skills</h4>
+                                        <ul>
+                                            <li>Distinguish reliability from validity and recognize threats to each.</li>
+                                            <li>recognize poorly performing items and biased measurement.</li>
+                                            <li>Identify measurement non-invariance across populations.</li>
+                                        </ul>
+                                        <h4>Local application and startup lens</h4>
+                                        <p>Measurement is adapted to Nigerian populations culturally and linguistically valid instruments for the South-East addressing the over-reliance on un-validated foreign scales. Startup lens: validated local assessment instruments and testing platforms are defensible ventures.</p>
+                                        <h4>Ethics and professional responsibility</h4>
+                                        <p>The course stresses fairness and cultural validity in measurement, the harm of biased tests, the NDPA 2023 for assessment data, and honest reporting of psychometric properties.</p>
+                                        <h4>Learning outcomes</h4>
+                                        <p>On completion, the student should be able to:</p>
+                                        <ul>
+                                            <li>Develop and validate psychological scales rigorously.</li>
+                                            <li>Apply IRT and adaptive-testing methods.</li>
+                                            <li>Test and ensure measurement invariance and fairness.</li>
+                                            <li>Apply fairness, validity and data-protection duties to assessment.</li>
+                                        </ul>
+                                        <h4>Course contents</h4>
+                                        <p>Classical test theory: reliability and validity. Factor analysis and structural-equation modelling. Item-response theory and item parameters. Computerized adaptive testing. Measurement invariance and fairness across cultures and languages. Machine learning for scale development. Honest reporting and data protection. Extensive laboratory work.</p>
+                                    </div>
+                                </article>

@@ -1,0 +1,50 @@
+                                <article class="course-description-item">
+                                    <div class="description-header">
+                                        <span class="course-sequence">9</span>
+                                        <span class="course-code">AIPSY 201</span>
+                                        <span class="course-title">Applied Machine Learning for Behavioral Data</span>
+                                        <span class="course-meta">Level 200 · First Semester · 2 Units · Compulsory · Lecture 30 h / Practical 45 h</span>
+                                    </div>
+                                    <div class="description-body">
+                                        <h4>Technology focus</h4>
+                                        <p>This course makes the psychologist build machine learning for behavioral problems: predicting outcomes, classifying patterns and clustering profiles from psychological data, with rigorous attention to bias, validity and overfitting.</p>
+                                        <h4>Toolbox</h4>
+                                        <table>
+                                            <tr><th>Tool / technology</th><th>What the student uses it for</th></tr>
+                                            <tr><td>scikit-learn (Python)</td><td>Supervised and unsupervised learning</td></tr>
+                                            <tr><td>tidy models / caret (R)</td><td>Behavioural-data ML workflows</td></tr>
+                                            <tr><td>Cross-validation tooling</td><td>Honest evaluation on small samples</td></tr>
+                                            <tr><td>Feature-importance & fairness tools</td><td>Interpretation and bias checks</td></tr>
+                                            <tr><td>Matplotlib / ggplot2</td><td>Diagnostics and visualization</td></tr>
+                                            <tr><td>MLflow (intro)</td><td>Track experiments and metrics</td></tr>
+                                        </table>
+                                        <h4>Practical lab drills</h4>
+                                        <ul>
+                                            <li>Predict a behavioral outcome and evaluate it honestly with cross-validation.</li>
+                                            <li>Classify psychological profiles and report precision/recall.</li>
+                                            <li>Cluster respondents into interpretable profiles.</li>
+                                            <li>Test a model for bias across demographic groups.</li>
+                                            <li>Diagnose and fix overfitting and leakage on small samples.</li>
+                                        </ul>
+                                        <h4>Identification skills</h4>
+                                        <ul>
+                                            <li>Distinguish prediction from explanation in psychological modelling.</li>
+                                            <li>recognize overfitting, leakage and small-sample fragility.</li>
+                                            <li>Identify demographic bias and the risk of mislabeling people.</li>
+                                        </ul>
+                                        <h4>Local application and startup lens</h4>
+                                        <p>Models target Nigerian needs mental-health risk, educational and organizational outcomes in the South-East aligning with NITDA's AI Research Scheme, while resisting harmful misuse. Startup lens: ethically designed behavioral-analytics tools are defensible wellbeing ventures.</p>
+                                        <h4>Ethics and professional responsibility</h4>
+                                        <p>The course foregrounds responsible-AI principles, the grave harm of biased or mislabeling models in psychology, and the duty never to deploy a behavioral classifier as a diagnosis without clinical and ethical safeguards.</p>
+                                        <h4>Learning outcomes</h4>
+                                        <p>On completion, the student should be able to:</p>
+                                        <ul>
+                                            <li>Engineer a leakage-free ML pipeline for behavioral data.</li>
+                                            <li>Evaluate models honestly on small samples.</li>
+                                            <li>Test and mitigate demographic bias.</li>
+                                            <li>Judge model readiness against validity, fairness and harm criteria.</li>
+                                        </ul>
+                                        <h4>Course contents</h4>
+                                        <p>The ML workflow for behavioral data. Supervised learning for outcomes; unsupervised profiling. Feature engineering and the small-sample problem. Evaluation, overfitting and leakage. Bias, fairness and the ethics of behavioral prediction. Prediction versus explanation. Extensive laboratory work on psychological datasets.</p>
+                                    </div>
+                                </article>

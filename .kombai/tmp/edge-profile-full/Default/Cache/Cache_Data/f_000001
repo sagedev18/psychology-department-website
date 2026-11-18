@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Department of Psychology, ESUT - Undergraduate, ICS, and Postgraduate programmes, news, resources, and contact.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Enugu-State-University-of-Science-and-Technology-logo.jpg">
+    <title>Department of Psychology - ESUT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="logo-section">
+                        <img src="Enugu-State-University-of-Science-and-Technology-logo.jpg" alt="ESUT Logo" class="logo-img">
+                        <div class="logo-text">
+                            <h1>Department of Psychology</h1>
+                            <p class="logo-subtext">Enugu State University of Science and Technology</p>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar" id="navBar"><div class="container">                                <ul class="nav-menu">
+                    <li class="nav-item active"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li class="nav-item"><a href="programs.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Programs</a></li>
+                    <li class="nav-item"><a href="academics.html" class="nav-link"><i class="fas fa-book-open"></i> Academics</a></li>
+                    <li class="nav-item"><a href="news.html" class="nav-link"><i class="fas fa-newspaper"></i> News & Events</a></li>
+                    <li class="nav-item"><a href="staff.html" class="nav-link"><i class="fas fa-users"></i> Staff</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+
+</div></nav>
+    </header>
+        
+<main id="main-content"><section class="hero">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2 class="hero-title gradient-text">Welcome to the Department of Psychology</h2>
+                        <p class="hero-subtitle">Advancing Knowledge in Human and Behavioural Sciences</p>
+                        <p class="hero-description">Excellence in teaching, research, and service for the advancement of medical and biomedical sciences. The Department offers undergraduate, ICS, and postgraduate programmes designed to produce competent, ethical, and research-driven physiologists.</p>
+                        <div class="hero-buttons">
+                            <a href="about.html" class="btn btn-primary"><i class="fas fa-info-circle"></i> Learn More</a>
+                            <a href="programs.html" class="btn btn-secondary"><i class="fas fa-graduation-cap"></i> Explore Programs</a>
+                        </div>
+                    </div>
+                    <div class="hero-hod">
+                        <div class="hod-card">
+                            <span class="hod-card-badge">Leadership</span>
+                            <div class="hod-image-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                                <p class="hod-placeholder-text">HOD Photo<br><small>(Add official image later)</small></p>
+                            </div>
+                            <div class="hod-info">
+                                <p class="hod-title">Head of Department</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="stats-section" style="background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%); padding: 40px 0;">
+        <div class="container">
+            <div class="achievements-grid">
+                <div class="achievement-card" style="padding:25px;">
+                    <h2 style="color:var(--primary); font-size:2rem;">1000+</h2>
+                    <p>Students Trained</p>
+                </div>
+                <div class="achievement-card" style="padding:25px;">
+                    <h2 style="color:var(--primary); font-size:2rem;">30+</h2>
+                    <p>Dedicated Staff</p>
+                </div>
+                <div class="achievement-card" style="padding:25px;">
+                    <h2 style="color:var(--primary); font-size:2rem;">15+</h2>
+                    <p>Years of Excellence</p>
+                </div>
+                <div class="achievement-card" style="padding:25px;">
+                    <h2 style="color:var(--primary); font-size:2rem;">100+</h2>
+                    <p>Research Projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Psychology at ESUT?</h2>
+            </div>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Student-Centred Learning</h3>
+                    <p>We combine classroom learning with practical exposure, encouraging research, reflection, and critical thinking.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-microscope"></i></div>
+                    <h3>Research-Driven Culture</h3>
+                    <p>Students are encouraged to explore mental health, behaviour, cognition, and applied psychological practice.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Career Preparation</h3>
+                    <p>Our training supports future roles in counselling, education, industry, health, and community development.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="programme-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Programme Pathways</h2>
+            </div>
+            <div class="programme-grid">
+                <article class="programme-card">
+                    <span class="programme-badge">UG</span>
+                    <h3>Undergraduate</h3>
+                    <p>Four-year and three-year programmes designed to build strong foundations in psychology and behavioural sciences.</p>
+                </article>
+                <article class="programme-card">
+                    <span class="programme-badge">ICS</span>
+                    <h3>Institute of Continuing Studies</h3>
+                    <p>Flexible programmes spanning three, four, and five years to support wider access to learning.</p>
+                </article>
+                <article class="programme-card">
+                    <span class="programme-badge">PG</span>
+                    <h3>Postgraduate</h3>
+                    <p>Postgraduate Diplomas, MSc, and PhD options for advanced academic and professional development.</p>
+                </article>
+                <article class="programme-card highlight-programme">
+                    <span class="programme-badge">Life</span>
+                    <h3>Student Experience</h3>
+                    <p>Seminars, mentoring, community engagement, and research opportunities that prepare students for impact.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="announcements" style="background:linear-gradient(135deg,#ffffff 0%,#f9f9f9 100%);">
+        <div class="container">
+            <div class="content-card" style="padding:30px; margin-bottom:24px;">
+                <h2 class="section-title"><i class="fas fa-book-open"></i> Overview</h2>
+                <p>Psychology is a scientific discipline which studies human and non-human behaviour from the physiological roots to the social influence processes which equips the students with skills needed for the explanation, prediction and modification of those behaviours for lasting peace and order in human society.</p>
+                <p style="margin-top:12px;">As a profession in the social sciences, psychology aims to provide students with a top-ranked undergraduate education in various areas of psychology which include but are not limited to Clinical psychology, Neurobiological psychology, Behavioural medicine/Medical psychology, Social psychology, Industrial/Organisational psychology, Positive psychology, and Health psychology. The goal of the programme is to train the next generation of leaders, innovators, and cutting-edge professionals in these diverse areas of psychology with the needed 21st-century skills.</p>
+                <p style="margin-top:12px;">Graduates of Psychology are well-equipped for job opportunities in health institutions, schools, NGOs, self-employment, industries, and security agencies.</p>
+            </div>
+
+            <div class="content-card" style="padding:30px; margin-bottom:24px;">
+                <h2 class="section-title"><i class="fas fa-lightbulb"></i> Philosophy</h2>
+                <p>As a science, Psychology seeks to discover patterns of behaviour, using facts, principles and generalizations, in order to increase our knowledge and understanding of individual behaviour in various social and cultural settings, groups, institutions and organizations for proper adaptation or adjustment and development.</p>
+                <p style="margin-top:12px;">The philosophy behind the Psychology curriculum in Nigerian Universities is therefore to equip students with skills, concepts and principles which can help them to understand, explain, predict, modify, and change human and non-human behaviours for intra- and interpersonal harmonious coexistence and overall social, economic, political, and national development of Nigeria.</p>
+            </div>
+
+            <div class="content-card" style="padding:30px; margin-bottom:24px;">
+                <h2 class="section-title"><i class="fas fa-star"></i> Employability Skills</h2>
+                <p>A graduate of Psychology should have the following employability skills among others:</p>
+                <ul class="feature-list" style="margin-top:12px;">
+                    <li>development, validation and effective application of a psychological test;</li>
+                    <li>effectively administer, analysis, and interpretation psychological test results;</li>
+                    <li>engagement in psychological adjustment counseling;</li>
+                    <li>designing and conducting psychological research;</li>
+                    <li>engaging in consultancy services for industries in terms of job recruitment and leadership training;</li>
+                    <li>effectively offer forensic services to the criminal justice system;</li>
+                    <li>engaging in consultancy services for sports organizations, private sport clubs, university, and school sports clubs; and</li>
+                    <li>ability to serve in advisory roles to government agencies and parastatals and engage in consultancy services for Local, State, and Federal government in areas of policy development and implementation.</li>
+                </ul>
+            </div>
+
+            <div class="content-card" style="padding:30px; margin-bottom:24px;">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> 21st Century Skills</h2>
+                <p>Psychology offers the following skills to enable its graduates to function optimally in the 21st Century:</p>
+                <ul class="feature-list" style="margin-top:12px;">
+                    <li>cognitive skills such as creativity, critical thinking, problem solving and language skills;</li>
+                    <li>social skills such as collaboration, leadership skills, multicultural adaptation, and ecumenism;</li>
+                    <li>technological skills such as communication, ICT competence (familiarity with the software and hardware);</li>
+                    <li>personal skills such as integrity, conscientiousness, emotional intelligence, entrepreneurial, and personal wellbeing maintenance;</li>
+                    <li>crisis intervention skills such as peace building, and trauma management skills;</li>
+                    <li>environmental conservation skills such as pro-ecological behavior;</li>
+                    <li>psychometric skills such test development, test administration, scoring, interpretation, and application; and</li>
+                    <li>research skills such as data collection, analysis, and interpretation, and report writing.</li>
+                </ul>
+            </div>
+
+            <div id="homeNewsList" class="announcements-grid" style="margin-top:20px;"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Department of Psychology</h3>
+                    <p>Enugu State University of Science and Technology</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ESUT Campus, Agbani, Enugu State, Nigeria</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="news.html">News &amp; Events</a></li>
+                        <li><a href="staff.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> psychology@esut.edu.ng</p>
+                    <p><i class="fas fa-phone"></i> +234 (0) xxx xxx xxxx</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Department of Psychology, ESUT. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="site-data.js"></script>
+    <script>
+        const data = window.ESUTData.load();
+        const homeNewsList = document.getElementById('homeNewsList');
+        const recentNews = (data.news || []).slice(0, 3);
+
+        homeNewsList.innerHTML = recentNews.map(item => `
+            <div class="announcement-card">
+                <div class="announcement-date"><span class="date-day">${new Date(item.date).getDate()}</span><span class="date-month">${new Date(item.date).toLocaleString('en-US', { month: 'short' })}</span></div>
+                <div class="announcement-content">
+                    <h3>${item.title}</h3>
+                    <p>${item.summary}</p>
+                    <span class="announcement-tag">${item.category}</span>
+                </div>
+            </div>
+        `).join('');
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="ESUT Department of Psychology website - programmes, news, resources, contact.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News &amp; Events - Department of Psychology | ESUT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="logo-section">
+                        <img src="Enugu-State-University-of-Science-and-Technology-logo.jpg" alt="ESUT Logo" class="logo-img">
+                        <div class="logo-text">
+                            <h1>Department of Psychology</h1>
+                            <p class="logo-subtext">Enugu State University of Science and Technology</p>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar" id="navBar"><div class="container">                                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li class="nav-item"><a href="programs.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Programs</a></li>
+                    <li class="nav-item"><a href="academics.html" class="nav-link"><i class="fas fa-book-open"></i> Academics</a></li>
+                    <li class="nav-item active"><a href="news.html" class="nav-link"><i class="fas fa-newspaper"></i> News & Events</a></li>
+                    <li class="nav-item"><a href="staff.html" class="nav-link"><i class="fas fa-users"></i> Staff</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+
+</div></nav>
+    </header>
+
+    <main id="main-content"><section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">News &amp; Events</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><i class="fas fa-chevron-right"></i></li>
+                <li>News &amp; Events</li>
+            
+        </div>
+    </section>
+
+    <section class="page-content">
+        <div class="container">
+            <div class="content-card">
+                <h2>Announcements</h2>
+                <div id="newsListContainer" class="announcements-grid" style="margin-top:20px;"></div>
+            </div>
+
+
+            <div class="content-card" id="gallery">
+                <h2>Photo Gallery</h2>
+                <p>Photo gallery for events and departmental activities</p>
+                <div id="eventGalleryContainer" class="gallery-grid" style="margin-top:20px;"></div>
+            </div>
+
+            <div class="content-card">
+                <h2>Current Events</h2>
+                <div id="currentEventsContainer"></div>
+            </div>
+
+            <div class="content-card">
+                <h2>Past Events</h2>
+                <div id="pastEventsContainer"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Department of Psychology</h3>
+                    <p>ESUT</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ESUT Campus, Agbani, Enugu State, Nigeria</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="news.html">News &amp; Events</a></li>
+                        <li><a href="staff.html">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> psychology@esut.edu.ng</p>
+                    <p><i class="fas fa-phone"></i> +234 (0) 800 000 0000</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Department of Psychology, ESUT. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="site-data.js"></script>
+    <script>
+        const siteData = window.ESUTData.load();
+        const newsContainer = document.getElementById('newsListContainer');
+        const eventGallery = document.getElementById('eventGalleryContainer');
+        const currentEvents = document.getElementById('currentEventsContainer');
+        const pastEvents = document.getElementById('pastEventsContainer');
+
+        const formatDate = (value) => {
+            if (!value) return 'N/A';
+            const date = new Date(`${value}T00:00:00`);
+            return isNaN(date.getTime()) ? value : date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+        };
+
+        const getEventStatus = (item) => {
+            const today = new Date();
+            const todaysDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            const eventDate = new Date(`${item.date}T00:00:00`);
+            const expiryDate = item.expiryDate ? new Date(`${item.expiryDate}T23:59:59`) : eventDate;
+
+            if (todaysDate < eventDate) {
+                return 'Upcoming';
+            }
+
+            if (todaysDate <= expiryDate) {
+                return 'Ongoing';
+            }
+
+            return 'Past';
+        };
+
+        const classifyEvents = (events) => {
+            const today = new Date();
+            const todaysDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+            return events.reduce((groups, item) => {
+                const expiryDate = item.expiryDate ? new Date(`${item.expiryDate}T23:59:59`) : new Date(`${item.date}T23:59:59`);
+                const eventStatus = getEventStatus(item);
+                const isCurrent = todaysDate <= expiryDate && eventStatus !== 'Past';
+                if (isCurrent) {
+                    groups.current.push({ ...item, status: eventStatus });
+                } else {
+                    groups.past.push({ ...item, status: 'Past' });
+                }
+                return groups;
+            }, { current: [], past: [] });
+        };
+
+        if (newsContainer) {
+            newsContainer.innerHTML = (siteData.news || []).map(item => `
+                <div class="announcement-card">
+                    <div class="announcement-date"><span class="date-day">${new Date(item.date).getDate()}</span><span class="date-month">${new Date(item.date).toLocaleString('en-US', { month: 'short' })}</span></div>
+                    <div class="announcement-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.summary}</p>
+                        <span class="announcement-tag">${item.category}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        if (eventGallery) {
+            eventGallery.innerHTML = (siteData.events || []).map(() => `
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="fas fa-image"></i><p>Event Photo</p></div></div>
+            `).join('');
+        }
+
+        const eventGroups = classifyEvents(siteData.events || []);
+
+        if (currentEvents) {
+            currentEvents.innerHTML = eventGroups.current.length ? eventGroups.current.map(item => `
+                <article class="event-card">
+                    <div class="event-card-header">
+                        <h3>${item.title}</h3>
+                        <span class="announcement-tag event-status-${item.status.toLowerCase()}">${item.status}</span>
+                    </div>
+                    <div class="event-card-body">
+                        <p class="event-meta"><strong>Event Date:</strong> ${formatDate(item.date)}</p>
+                        <p class="event-meta"><strong>Expiry Date:</strong> ${formatDate(item.expiryDate || item.date)}</p>
+                        <p class="event-meta"><strong>Venue:</strong> ${item.venue}</p>
+                        <p class="event-description">${item.description}</p>
+                    </div>
+                </article>
+            `).join('') : '<p>No current events available.</p>';
+        }
+
+        if (pastEvents) {
+            pastEvents.innerHTML = eventGroups.past.length ? eventGroups.past.map(item => `
+                <article class="event-card event-card-past">
+                    <div class="event-card-header">
+                        <h3>${item.title}</h3>
+                        <span class="announcement-tag event-status-${item.status.toLowerCase()}">${item.status}</span>
+                    </div>
+                    <div class="event-card-body">
+                        <p class="event-meta"><strong>Date:</strong> ${formatDate(item.date)}</p>
+                        <p class="event-meta"><strong>Venue:</strong> ${item.venue}</p>
+                        <p class="event-description">${item.description}</p>
+                    </div>
+                </article>
+            `).join('') : '<p>No past events available.</p>';
+        }
+    </script>
+    <script src="app.js"></script>
+
+    <!-- Admin Modal -->
+    <div id="adminModal" class="admin-modal" style="display:none;">
+        <div class="admin-modal-content">
+            <span class="admin-close" onclick="closeAdminDashboard()">&times;</span>
+            <div id="adminLoginFormContainer">
+                <h3>Admin Login</h3>
+                <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input type="text" id="adminUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p id="adminLoginMessage" style="color:red; margin-top:10px;"></p>
+            </div>
+            <div id="adminPanel" style="display:none; margin-top:20px;">
+                <h3>Admin Panel</h3>
+                <button onclick="showNewsManager()" class="btn btn-secondary">Manage News & Events</button>
+                <button onclick="window.location.href='admin website/dashboard.html'" class="btn btn-primary">Open Full Dashboard</button>
+                <button onclick="closeAdminDashboard()" class="btn btn-secondary">Close</button>
+            </div>
+            <div id="newsManager" style="display:none; margin-top:20px;">
+                <h3>News & Events Manager</h3>
+                <form id="newsForm" onsubmit="addNews(event)">
+                    <div class="form-group">
+                        <label for="newsTitle">Title</label>
+                        <input type="text" id="newsTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newsSummary">Summary</label>
+                        <textarea id="newsSummary" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="newsCategory">Category</label>
+                        <select id="newsCategory">
+                            <option value="Announcement">Announcement</option>
+                            <option value="Seminar">Seminar</option>
+                            <option value="Event">Event</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add News</button>
+                    <button type="button" onclick="showNewsManager()" class="btn btn-secondary">Back</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

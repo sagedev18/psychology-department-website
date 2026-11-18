@@ -1,0 +1,50 @@
+                                <article class="course-description-item">
+                                    <div class="description-header">
+                                        <span class="course-sequence">10</span>
+                                        <span class="course-code">AIPSY 303</span>
+                                        <span class="course-title">Digital Mental-Health Tools and Behavioral Sensing</span>
+                                        <span class="course-meta">Level 300 · Second Semester · 2 Units · Compulsory · Lecture 15 h / Practical 45 h</span>
+                                    </div>
+                                    <div class="description-body">
+                                        <h4>Technology focus</h4>
+                                        <p>This course surveys and builds technologies of digital mental health and behavioral sensing: apps, chatbots, wearables and ecological momentary assessment with evidence, safety and equity at the center.</p>
+                                        <h4>Toolbox</h4>
+                                        <table>
+                                            <tr><th>Tool / technology</th><th>What the student uses it for</th></tr>
+                                            <tr><td>No-code/low-code app tools</td><td>Prototype digital-health interventions</td></tr>
+                                            <tr><td>EMA / experience-sampling tools</td><td>Real-time behavioral data collection</td></tr>
+                                            <tr><td>Wearable/sensor data</td><td>Behavioral and physiological signals</td></tr>
+                                            <tr><td>Chatbot frameworks (with guardrails)</td><td>Safe conversational prototypes</td></tr>
+                                            <tr><td>Dashboards</td><td>Visualize wellbeing data</td></tr>
+                                            <tr><td>Evaluation frameworks</td><td>Assess efficacy and safety</td></tr>
+                                        </table>
+                                        <h4>Practical lab drills</h4>
+                                        <ul>
+                                            <li>Design an ecological-momentary-assessment study and collect data.</li>
+                                            <li>Prototype a psychoeducational app or safe chatbot with crisis safeguards.</li>
+                                            <li>Analyze wearable/behavioral data for patterns.</li>
+                                            <li>Critically evaluate a commercial mental-health app for evidence and safety.</li>
+                                            <li>Build a wellbeing dashboard with privacy by design.</li>
+                                        </ul>
+                                        <h4>Identification skills</h4>
+                                        <ul>
+                                            <li>Distinguish evidence-based from unproven digital-health claims.</li>
+                                            <li>recognize safety gaps (e.g. missing crisis pathways) in tools.</li>
+                                            <li>Identify privacy and equity risks in behavioral sensing.</li>
+                                        </ul>
+                                        <h4>Local application and startup lens</h4>
+                                        <p>Digital tools target Nigeria's mental-health access gap and the South-East specifically low-cost, culturally appropriate, multilingual support while resisting unsafe or exploitative apps. Startup lens: evidence-based, safe digital-wellbeing tools are an emerging venture class supported by the SEDC and iDICE pipelines.</p>
+                                        <h4>Ethics and professional responsibility</h4>
+                                        <p>The course centers safety (crisis pathways), evidence, equity of access, the NDPA 2023 for sensitive data, and the duty not to over-promise clinical benefit.</p>
+                                        <h4>Learning outcomes</h4>
+                                        <p>On completion, the student should be able to:</p>
+                                        <ul>
+                                            <li>Design and prototype digital mental-health tools responsibly.</li>
+                                            <li>Collect and analyze EMA and behavioral-sensing data.</li>
+                                            <li>Critically evaluate digital-health tools for evidence and safety.</li>
+                                            <li>Apply safety, equity and data-protection duties by design.</li>
+                                        </ul>
+                                        <h4>Course contents</h4>
+                                        <p>Digital mental health: apps, chatbots, wearables and EMA. Evidence and evaluation. Behavioral sensing and analysis. Safety, crisis pathways and equity. Privacy by design and the NDPA 2023. Critical appraisal of commercial tools. Laboratory and prototyping work.</p>
+                                    </div>
+                                </article>

@@ -1,0 +1,50 @@
+                                <article class="course-description-item">
+                                    <div class="description-header">
+                                        <span class="course-sequence">9</span>
+                                        <span class="course-code">AIPSY 301</span>
+                                        <span class="course-title">Natural Language Processing and Affective Computing for Mental Health</span>
+                                        <span class="course-meta">Level 300 · First Semester · 2 Units · Compulsory · Lecture 30 h / Practical 45 h</span>
+                                    </div>
+                                    <div class="description-body">
+                                        <h4>Technology focus</h4>
+                                        <p>This course gives the psychologist the language- and emotion-AI frontier: analyzing text and speech for psychological signal, and affective computing that infers emotional and affective states, used critically and safely.</p>
+                                        <h4>Toolbox</h4>
+                                        <table>
+                                            <tr><th>Tool / technology</th><th>What the student uses it for</th></tr>
+                                            <tr><td>Python: NLTK, spaCy, transformers</td><td>Text analysis and language models</td></tr>
+                                            <tr><td>Sentiment & emotion lexicons/models</td><td>Affective text analysis</td></tr>
+                                            <tr><td>Audio/affect features (open SMILE-style)</td><td>Speech and affective signals</td></tr>
+                                            <tr><td>Hugging Face models</td><td>Pre-trained language/affect models</td></tr>
+                                            <tr><td>Annotation tools</td><td>Label psychological text data</td></tr>
+                                            <tr><td>Visualization</td><td>Communicate findings responsibly</td></tr>
+                                        </table>
+                                        <h4>Practical lab drills</h4>
+                                        <ul>
+                                            <li>Analyze text for sentiment, emotion and psychological markers.</li>
+                                            <li>Build a classifier to flag distress signals in text (as triage, not diagnosis).</li>
+                                            <li>Extract affective features from speech responsibly.</li>
+                                            <li>Evaluate a model for bias and false alarms.</li>
+                                            <li>Document the limits and safe use of an affective system.</li>
+                                        </ul>
+                                        <h4>Identification skills</h4>
+                                        <ul>
+                                            <li>recognize the unreliability and bias of emotion/affect inference.</li>
+                                            <li>Distinguish a triage signal from a clinical diagnosis.</li>
+                                            <li>Identify the serious harms of false positives and negatives in mental-health AI.</li>
+                                        </ul>
+                                        <h4>Local application and startup lens</h4>
+                                        <p>NLP and affective computing are applied to Nigerian needs the vast mental-health treatment gap, stigma, and multilingual (including Igbo) contexts in the South-East always as support to, never a replacement for, human care. Startup lens: ethically designed digital-wellbeing and triage tools are emerging ventures, subject to strict safeguards.</p>
+                                        <h4>Ethics and professional responsibility</h4>
+                                        <p>The course is intensely ethical: affect inference is unreliable and can harm; the course mandates safeguards, human oversight, the NDPA 2023 for highly sensitive data, and the principle that AI may support but never replace clinical judgement.</p>
+                                        <h4>Learning outcomes</h4>
+                                        <p>On completion, the student should be able to:</p>
+                                        <ul>
+                                            <li>Analyze psychological text and speech with NLP and affective computing.</li>
+                                            <li>Build distress-triage tools with safeguards, not diagnoses.</li>
+                                            <li>Evaluate affective systems for bias and harm.</li>
+                                            <li>Apply safety, oversight and data-protection duties to mental-health AI.</li>
+                                        </ul>
+                                        <h4>Course contents</h4>
+                                        <p>Natural language processing for psychology: text representation, sentiment, emotion and psychological markers. Language models for psychological text. Affective computing: speech and affective signals; reliability and bias. Distress detection as triage with safeguards. Strict ethics, oversight and data protection. Extensive laboratory work.</p>
+                                    </div>
+                                </article>
