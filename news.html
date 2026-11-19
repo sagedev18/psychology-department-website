@@ -46,7 +46,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><i class="fas fa-chevron-right"></i></li>
                 <li>News &amp; Events</li>
-            
+            </ul>
         </div>
     </section>
 
@@ -54,7 +54,7 @@
         <div class="container">
             <div class="content-card">
                 <h2>Announcements</h2>
-                <div id="newsListContainer" class="announcements-grid" style="margin-top:20px;"></div>
+                <div id="newsListContainer" class="announcements-grid" style="margin-top:20px;">No announcement for now check again later</div>
             </div>
 
 
@@ -109,7 +109,6 @@
     <script src="site-data.js"></script>
     <script>
         const siteData = window.ESUTData.load();
-        const newsContainer = document.getElementById('newsListContainer');
         const eventGallery = document.getElementById('eventGalleryContainer');
         const currentEvents = document.getElementById('currentEventsContainer');
         const pastEvents = document.getElementById('pastEventsContainer');
@@ -153,19 +152,6 @@
                 return groups;
             }, { current: [], past: [] });
         };
-
-        if (newsContainer) {
-            newsContainer.innerHTML = (siteData.news || []).map(item => `
-                <div class="announcement-card">
-                    <div class="announcement-date"><span class="date-day">${new Date(item.date).getDate()}</span><span class="date-month">${new Date(item.date).toLocaleString('en-US', { month: 'short' })}</span></div>
-                    <div class="announcement-content">
-                        <h3>${item.title}</h3>
-                        <p>${item.summary}</p>
-                        <span class="announcement-tag">${item.category}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
 
         if (eventGallery) {
             eventGallery.innerHTML = (siteData.events || []).map(() => `
