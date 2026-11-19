@@ -3,29 +3,10 @@
 
     const defaultData = {
         news: [
-            {
-                id: 'news-default-1',
-                title: 'Orientation Programme for New Students',
-                date: '2026-10-15',
-                category: 'Announcement',
-                summary: 'Welcome ceremony scheduled for all newly admitted students.'
-            },
-            {
-                id: 'news-default-2',
-                title: 'Departmental Seminar Series',
-                date: '2026-10-22',
-                category: 'Seminar',
-                summary: 'Recent advances in cognitive and behavioural psychology.'
-            }
+           
         ],
         events: [
-            {
-                id: 'event-default-1',
-                title: 'Faculty Research Workshop',
-                date: '2026-11-10',
-                venue: 'Faculty Hall',
-                description: 'A workshop on academic writing and research practice.'
-            }
+           
         ],
         courses: [
             {
