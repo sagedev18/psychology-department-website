@@ -54,6 +54,7 @@
                 <a href="#events" class="nav-link">Events</a>
                 <a href="#courses" class="nav-link">Courses</a>
                 <a href="#staff" class="nav-link">Staff</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
             </nav>
 
             <button id="logoutBtn" class="secondary-btn full-width">Logout</button>
@@ -69,6 +70,10 @@
             </header>
 
             <section id="overview" class="panel stats-panel">
+                <div class="admin-warning-banner">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>ONLY AUTHORIZED ADMINS SHOULD BE HERE. DON'T MAKE ANY CHANGES IF YOU DON'T KNOW WHAT YOU'RE DOING.</span>
+                </div>
                 <div class="stat-card">
                     <span>News</span>
                     <strong id="newsCount">0</strong>
@@ -85,11 +90,15 @@
                     <span>Staff</span>
                     <strong id="staffCount">0</strong>
                 </div>
+                <div class="stat-card">
+                    <span>Gallery</span>
+                    <strong id="galleryCount">0</strong>
+                </div>
             </section>
 
             <section id="news" class="panel">
                 <div class="panel-head">
-                    <h2>News &amp; Announcements</h2>
+                    <h2>News & Announcements</h2>
                 </div>
 
                 <form id="newsForm" class="admin-form grid-form">
@@ -245,6 +254,38 @@
                 <div class="list-box">
                     <h3>Saved Staff</h3>
                     <ul id="staffList" class="item-list"></ul>
+                </div>
+            </section>
+
+            <section id="gallery" class="panel">
+                <div class="panel-head">
+                    <h2>Photo Gallery</h2>
+                </div>
+
+                <form id="galleryForm" class="admin-form grid-form">
+                    <div class="form-group full-span">
+                        <label for="galleryDescription">Description</label>
+                        <textarea id="galleryDescription" name="description" rows="3" placeholder="Describe this photo/event..." required></textarea>
+                    </div>
+                    <div class="form-group full-span">
+                        <label for="galleryImage">Gallery Image</label>
+                        <div class="photo-upload-group">
+                            <label for="galleryImageFile" class="file-input-label">
+                                <i class="fas fa-upload"></i> Choose Image
+                            </label>
+                            <input type="file" id="galleryImageFile" name="imageFile" accept="image/*">
+                            <img id="galleryImagePreview" class="photo-preview" alt="Image preview">
+                            <input type="hidden" id="galleryImage" name="image" value="">
+                        </div>
+                    </div>
+                    <div class="form-actions full-span">
+                        <button type="submit" class="primary-btn">Add to Gallery</button>
+                    </div>
+                </form>
+
+                <div class="list-box">
+                    <h3>Saved Gallery Images</h3>
+                    <ul id="galleryList" class="item-list gallery-item-list"></ul>
                 </div>
             </section>
         </main>

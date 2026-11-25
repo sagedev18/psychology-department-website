@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="ESUT Department of Psychology website - programmes, news, resources, contact.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News &amp; Events - Department of Psychology | ESUT</title>
+    <title>News & Events - Department of Psychology | ESUT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -41,12 +41,12 @@
 
     <main id="main-content"><section class="page-hero">
         <div class="container">
-            <h1 class="page-title">News &amp; Events</h1>
+            <h1 class="page-title">News & Events</h1>
             <ul class="breadcrumb">
                 <li><a href="index.html">Home</a></li>
                 <li><i class="fas fa-chevron-right"></i></li>
-                <li>News &amp; Events</li>
-            
+                <li>News & Events</li>
+            </ul>
         </div>
     </section>
 
@@ -89,7 +89,7 @@
                     <ul class="footer-links">
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="academics.html">Academics</a></li>
-                        <li><a href="news.html">News &amp; Events</a></li>
+                        <li><a href="news.html">News & Events</a></li>
                         <li><a href="staff.html">Resources</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -169,9 +169,14 @@
             }
 
             if (eventGallery) {
-                eventGallery.innerHTML = (siteData.events || []).map(() => `
-                    <div class="gallery-item"><div class="gallery-placeholder"><i class="fas fa-image"></i><p>Event Photo</p></div></div>
-                `).join('');
+                eventGallery.innerHTML = (siteData.gallery || []).map(item => `
+                    <div class="gallery-item">
+                        <img src="${item.image}" alt="${item.description}" loading="lazy" onerror="this.onerror=null; this.src='Enugu-State-University-of-Science-and-Technology-logo.jpg';">
+                        <div class="gallery-overlay">
+                            <p>${item.description}</p>
+                        </div>
+                    </div>
+                `).join('') || '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--muted);">No gallery images yet. Add some from the admin panel.</p>';
             }
 
             const eventGroups = classifyEvents(siteData.events || []);

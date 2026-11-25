@@ -1,5 +1,5 @@
 const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD = 'admin123';
+const ADMIN_PASSWORD = 'iamadmin22#';
 const dataStore = window.ESUTData;
 
 const getData = () => dataStore.load();
@@ -113,6 +113,7 @@ if (document.body.id === 'dashboard-page') {
         document.getElementById('eventForm').addEventListener('submit', handleEventSubmit);
         document.getElementById('courseForm').addEventListener('submit', handleCourseSubmit);
         document.getElementById('staffForm').addEventListener('submit', handleStaffSubmit);
+        document.getElementById('galleryForm').addEventListener('submit', handleGallerySubmit);
 
         saveBtn.addEventListener('click', async () => {
             setButtonLoading(saveBtn, true);
@@ -148,6 +149,26 @@ if (document.body.id === 'dashboard-page') {
             };
             reader.readAsDataURL(file);
         });
+
+        const galleryFileInput = document.getElementById('galleryImageFile');
+        const galleryPreview = document.getElementById('galleryImagePreview');
+        const galleryHiddenInput = document.getElementById('galleryImage');
+
+        galleryFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                alert('Please select an image file.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                galleryPreview.src = event.target.result;
+                galleryPreview.classList.add('show');
+                galleryHiddenInput.value = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
     }
 
     function renderStats() {
@@ -155,6 +176,7 @@ if (document.body.id === 'dashboard-page') {
         document.getElementById('eventCount').textContent = currentData.events.length;
         document.getElementById('courseCount').textContent = currentData.courses.length;
         document.getElementById('staffCount').textContent = currentData.staff.length;
+        document.getElementById('galleryCount').textContent = currentData.gallery.length;
     }
 
     function renderList(targetId, items, type) {
@@ -192,6 +214,17 @@ if (document.body.id === 'dashboard-page') {
             if (type === 'staff') {
                 meta.innerHTML = `<strong>${item.name}</strong><span>${item.role} • ${item.email}</span>`;
             }
+            if (type === 'gallery') {
+                meta.innerHTML = `<strong>${item.description}</strong><span>${item.image ? 'Image uploaded' : 'No image'}</span>`;
+                const img = document.createElement('img');
+                img.src = item.image || 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="40"><rect fill="%23ddd" width="100%" height="100%"/></svg>';
+                img.style.width = '60px';
+                img.style.height = '40px';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '4px';
+                img.style.marginRight = '12px';
+                li.insertBefore(img, meta);
+            }
 
             const button = document.createElement('button');
             button.type = 'button';
@@ -217,6 +250,7 @@ if (document.body.id === 'dashboard-page') {
         renderList('eventList', currentData.events, 'events');
         renderList('courseList', currentData.courses, 'courses');
         renderList('staffList', currentData.staff, 'staff');
+        renderList('galleryList', currentData.gallery, 'gallery');
     }
 
     async function handleNewsSubmit(event) {
@@ -304,6 +338,31 @@ if (document.body.id === 'dashboard-page') {
         photoPreview.src = '';
         photoPreview.classList.remove('show');
         photoHiddenInput.value = '';
+        renderDashboard();
+        setButtonLoading(submitBtn, false);
+    }
+
+    async function handleGallerySubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const submitBtn = event.currentTarget.querySelector('button[type="submit"]');
+        const imageHiddenInput = document.getElementById('galleryImage');
+        const imagePreview = document.getElementById('galleryImagePreview');
+
+        setButtonLoading(submitBtn, true);
+
+        const imageValue = imageHiddenInput.value || formData.get('image').toString().trim();
+
+        await addItem('gallery', {
+            description: formData.get('description').toString().trim(),
+            image: imageValue
+        });
+
+        currentData = await getData();
+        event.currentTarget.reset();
+        imagePreview.src = '';
+        imagePreview.classList.remove('show');
+        imageHiddenInput.value = '';
         renderDashboard();
         setButtonLoading(submitBtn, false);
     }

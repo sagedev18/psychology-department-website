@@ -36,7 +36,8 @@
             { id: 'staff-other-3', name: 'Louisa Ifeoma Anikwe', role: 'Staff Member', category: 'Administrative', email: '', photo: 'staff/LOUISA IFEOMA ANIKWE.png' },
             { id: 'staff-other-4', name: 'Michael Arinze Eze', role: 'Staff Member', category: 'Administrative', email: '', photo: 'staff/MICHAEL ARINZE EZE.png' },
             { id: 'staff-other-5', name: 'Pamela Adaobi Ogbozor', role: 'Staff Member', category: 'Administrative', email: '', photo: 'staff/PAMELA ADAOBI OGBOZOR.png' }
-        ]
+        ],
+        gallery: []
     };
 
     let dataCache = null;
@@ -56,6 +57,8 @@
         try {
             const parsed = JSON.parse(saved);
             if (!parsed || typeof parsed !== 'object') throw new Error('Bad data');
+            // Ensure gallery array exists for backward compatibility
+            if (!parsed.gallery) parsed.gallery = [];
             return parsed;
         } catch (error) {
             localStorage.setItem(ESUT_DATA_KEY, JSON.stringify(defaultData));
@@ -159,6 +162,7 @@
 
     async function addItem(type, item) {
         const data = await loadData();
+        if (!data[type]) data[type] = [];
         const newItem = { ...item, id: item.id || generateId(type.slice(0, -1)) };
         data[type].push(newItem);
         await saveData(data);

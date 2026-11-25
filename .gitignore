@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Temporary and debug files - do not upload to GitHub
 _kombai/
 .vscode/
@@ -103,4 +104,106 @@ node_modules/
 # localStorage is browser-based, not file-based
 
 # Admin website - keep but note it's a sub-app
+=======
+# Temporary and debug files - do not upload to GitHub
+_kombai/
+.vscode/
+_admin_backup/
+*.tmp
+*.temp
+
+# Debug/temporary text files
+a.txt
+b3.txt
+build_out.txt
+check_400level.txt
+g.txt
+g421.txt
+ga.txt
+mc.txt
+mid1.txt
+mid2.txt
+mid3.txt
+mid4.txt
+mid5.txt
+out.txt
+raw.txt
+
+# Debug Python scripts
+check_structure.py
+find_meta.py
+find_moji.py
+generate_descriptions.py
+_fix_esut_psy.py
+_fix_esut_psy_v2.py
+_fix_esut_psy_v3.py
+_fix_esut_psy_v4.py
+_inv.py
+_jfull.py
+_jfull2.py
+_moji.py
+_parse.py
+_parse2.py
+_tree.py
+_verify.py
+_verify2.py
+_dV.py
+_dX.py
+_dY.py
+_dZ.py
+_enc.py
+
+# Debug output files
+_dump*.txt
+_dump*.py
+_out*.txt
+_out*.out
+_parse*.out
+_parse*.txt
+_src*.txt
+_inv.txt
+_jfull.txt
+_jfull2.txt
+_jkeys.txt
+_jsondump.txt
+_moji.txt
+_esutpsy.txt
+_esutpsy2.txt
+_files.txt
+_new100.json
+_new100.txt
+_oldblock.txt
+_p2.log
+_p2full.txt
+_verify_result.txt
+_enc.log
+_enc.txt
+_enc2.txt
+_dV.out
+_dW.out
+_dX.out
+
+# PowerShell scripts (temp)
+clean.ps1
+clean.ps1
+_find_gallery.ps1
+hfix.ps1
+
+# Other temp files
+DEPT PROGRAM WITH AI COURSES.docx
+exam-timetable.pdf
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node modules (if any)
+node_modules/
+
+# Local admin data (created at runtime)
+# localStorage is browser-based, not file-based
+
+# Admin website - keep but note it's a sub-app
+>>>>>>> 6dbc6aba7ceb384027b4a9ba7e03a23cfd576b58
 # admin website/ is kept as part of the project
