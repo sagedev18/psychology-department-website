@@ -328,33 +328,43 @@ function initCounters() {
     const counters = document.querySelectorAll('.counter');
     if (!counters.length) return;
 
+    // Fallback: animate immediately if already in viewport
+    counters.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            animateCounter(el);
+        }
+    });
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const el = entry.target;
-                const target = +el.getAttribute('data-target');
-                const suffix = el.getAttribute('data-suffix') || '';
-                const duration = 1500;
-                const step = target / (duration / 16);
-                let current = 0;
-
-                const update = () => {
-                    current += step;
-                    if (current < target) {
-                        el.textContent = Math.floor(current) + suffix;
-                        requestAnimationFrame(update);
-                    } else {
-                        el.textContent = target + suffix;
-                    }
-                };
-
-                update();
-                observer.unobserve(el);
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0 });
 
     counters.forEach(c => observer.observe(c));
+}
+
+function animateCounter(el) {
+    const target = +el.getAttribute('data-count');
+    const suffix = el.getAttribute('data-suffix') || '+';
+    const duration = 1500;
+    const step = target / (duration / 16);
+    let current = 0;
+
+    const update = () => {
+        current += step;
+        if (current < target) {
+            el.textContent = Math.floor(current) + suffix;
+            requestAnimationFrame(update);
+        } else {
+            el.textContent = target + suffix;
+        }
+    };
+    update();
 }
 
 initCounters();
