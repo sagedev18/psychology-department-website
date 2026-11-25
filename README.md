@@ -47,6 +47,25 @@ vercel login
 vercel
 ```
 
+## 🔧 Backend Setup (Vercel KV)
+
+For production with real-time data sync across all devices:
+
+1. **Create Vercel KV Database:**
+   - In Vercel Dashboard, go to Storage → Create Database → KV
+   - Connect it to your project
+
+2. **Set Environment Variables in Vercel:**
+   - Go to Project Settings → Environment Variables
+   - Add from `.env.example`:
+     - `KV_REST_API_URL` (auto-populated when KV is connected)
+     - `KV_REST_API_TOKEN` (auto-populated)
+     - `ADMIN_USERNAME` (your secure admin username)
+     - `ADMIN_PASSWORD` (your secure admin password)
+     - `SESSION_SECRET` (generate a random 32+ character string)
+
+3. **Redeploy** - Changes take effect on next deployment
+
 ## 📁 Project Structure
 
 ```
@@ -62,45 +81,68 @@ esut website/
 ├── style.css               # Main stylesheet
 ├── responsive.css          # Mobile responsive styles
 ├── app.js                  # Main JavaScript
-├── site-data.js            # Site data (news, events, courses, staff)
+├── site-data.js            # Site data (news, events, courses, staff) + API client
 ├── vercel.json             # Vercel deployment config
+├── package.json            # Node dependencies (@vercel/kv)
 ├── .gitignore              # Git ignore rules
+├── .env.example            # Environment variables template
 ├── README.md               # This file
 ├── staff/                  # Staff photos (20 images)
 ├── Enugu-State-University-of-Science-and-Technology-logo.jpg
+├── api/                    # Vercel Serverless Functions (Backend API)
+│   ├── data.js             # Data CRUD API (news, events, courses, staff)
+│   └── auth.js             # Authentication API (login, verify, logout)
 └── admin website/          # Admin sub-application
     ├── index.html          # Admin login
     ├── dashboard.html      # Admin dashboard
-    ├── admin.js            # Admin logic
+    ├── admin.js            # Admin logic (API-based)
     ├── admin.css           # Admin styles
     └── ADMIN_GUIDE.md
 ```
 
 ## 🔐 Admin Website Integration
 
-The admin website (in `admin website/`) is a separate sub-application that works together with the main website:
+The admin website (in `admin website/`) works together with the main website via a **shared backend API**:
 
-### How It Works
+### How It Works (Production)
 
-1. **Shared Data:** Both the main website and admin website use `site-data.js` and `localStorage` (key: `esut_department_data`). Since they're on the same domain, `localStorage` is shared between them.
+1. **Shared Backend (Vercel KV/Redis):**
+   - Both main website and admin website read/write to the same Vercel KV database
+   - Data persists across all browsers, devices, and sessions
+   - Real-time sync: changes in admin reflect immediately on main site
 
-2. **Admin Flow:**
-   - Admin logs in at `admin website/index.html` (username: `admin`, password: `admin123`)
-   - Admin adds/edits news, events, courses, or staff in the dashboard
-   - Data is saved to `localStorage` via `site-data.js`
-   - Main website reads from the same `localStorage` on page load
-   - Changes reflect immediately when main website pages are refreshed
+2. **Authentication:**
+   - Admin logs in at `admin website/index.html`
+   - JWT-like session tokens stored in `localStorage` (HTTP-only cookie alternative)
+   - Sessions validated via `/api/auth` endpoint
+   - 24-hour session expiry
 
-3. **Accessing Admin from Main Site:**
-   - Every page has an admin modal (click to open, or use the login link)
-   - Admin modal provides quick access to news management and full dashboard
+3. **Data Flow:**
+   - Admin adds/edits news, events, courses, or staff in dashboard
+   - Data saved to Vercel KV via `/api/data` endpoint
+   - Main website fetches from KV on page load (with 30s cache)
+   - `esutDataChanged` event notifies open admin tabs to refresh
+   - Changes reflect immediately across all devices/browsers
+
+4. **Fallback (Local Development):**
+   - On `localhost`, uses `localStorage` instead of API
+   - No Vercel KV required for local development
+   - Seamless transition to production
 
 ### Demo Credentials
 
 - **Username:** `admin`
 - **Password:** `admin123`
 
-> ⚠️ **Note:** This is a demo setup using `localStorage`. Data persists in the browser but is not shared across different browsers or devices. For production use with real data persistence, consider integrating with a backend (Firebase, Netlify CMS, or custom API).
+> ⚠️ **Important:** Change these in Vercel Environment Variables for production!
+
+### API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/data` | GET | Fetch all data (news, events, courses, staff) |
+| `/api/data` | POST | Create/update/delete items |
+| `/api/auth` | POST | Login, verify session, logout |
 
 ## 🎨 Design System
 
@@ -156,6 +198,16 @@ The website is fully responsive with:
 - ✅ Removed conflicting `.gallery-item:hover` rotation
 - ✅ Removed duplicate `.staff-card` CSS blocks
 
+### Backend & Admin (NEW)
+- ✅ Vercel Serverless Functions for API (`/api/data`, `/api/auth`)
+- ✅ Vercel KV (Redis) integration for persistent data storage
+- ✅ API-based authentication with session tokens
+- ✅ Cross-device data synchronization
+- ✅ Real-time updates via custom events
+- ✅ Local development fallback to localStorage
+- ✅ Loading states and error handling in admin dashboard
+- ✅ Image upload as base64 for staff photos
+
 ## 📦 Files to Upload to GitHub
 
 Upload all files EXCEPT those listed in `.gitignore`. Key files to include:
@@ -166,16 +218,18 @@ HTML files: index.html, about.html, academics.html, programs.html,
 CSS files: style.css, responsive.css, admin website/admin.css
 JS files: app.js, site-data.js, admin website/admin.js
 Images: Enugu-State-University-of-Science-and-Technology-logo.jpg, staff/ folder
-Config: vercel.json, .gitignore, README.md
+Config: vercel.json, package.json, .gitignore, .env.example, README.md
 Admin: admin website/index.html, admin website/dashboard.html
+API: api/data.js, api/auth.js
 ```
 
 ## 🐛 Troubleshooting
 
 **Admin changes not showing on main site?**
-- Make sure both sites are on the same domain (for localStorage sharing)
+- Make sure Vercel KV is connected and environment variables are set
+- Check browser console for API errors
 - Refresh the main website page after making admin changes
-- Check browser console for errors
+- Verify `/api/data` returns updated data
 
 **Images not loading?**
 - Verify image paths match exactly (case-sensitive)
@@ -185,6 +239,11 @@ Admin: admin website/index.html, admin website/dashboard.html
 **Mobile menu not working?**
 - Ensure Font Awesome CDN is loading (for hamburger icon)
 - Check `app.js` is loaded after all HTML content
+
+**Admin login fails?**
+- Verify `ADMIN_USERNAME` and `ADMIN_PASSWORD` in Vercel Environment Variables
+- Check Vercel KV is connected (required for sessions)
+- Clear browser localStorage and try again
 
 ## 📄 License
 

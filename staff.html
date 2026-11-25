@@ -116,11 +116,12 @@
 
             <script src="site-data.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             const staffGallery = document.getElementById('staffGallery');
             const searchInput = document.getElementById('staffSearchInput');
 
             let searchQuery = '';
+            let staff = [];
 
             const rankOrder = (name) => {
                 const n = name.toUpperCase();
@@ -130,29 +131,12 @@
                 return 3;
             };
 
-            const allStaff = [
-                { name: 'Prof. E. C. Onyeneje', role: 'Social Psychologist', photo: 'staff/PROF. E. C. ONYENEJE.png' },
-                { name: 'Prof. Ike Onyishi', role: 'Industral/Organisational Psychologist (Adjunt)', photo: 'staff/PROF. IKE ONYISHI.jpg' },
-                { name: 'Prof. Mrs. Obiageli Omeje', role: 'Clinical Psychologist <br> DEAN, FSSH', photo: 'staff/Prof. Mrs. OBIAGELI OMEJE.png' },
-                { name: 'Prof. Regina Eya', role: 'Development Psychologist (Adjunt)', photo: 'staff/PROF. REGINA EYA.png' },
-                { name: 'Assoc.Elvis Anthony Benjamin', role: 'Industral/Organisational Psychologist', photo: 'staff/ASSOC. PROF ELVIS ANTHONY BENJAMIN.png' },
-                { name: 'Assoc.Tobias Obidra Odor', role: 'Social Psychologist', photo: 'staff/ASSOC. PROF TOBIAS OBIDRA ODOR.png' },
-                { name: 'Dr. Adaobi Chika Eze', role: 'Industral/Organisational Psychologist ', photo: 'staff/DR. ADAOBI CHIKA EZE.png' },
-                { name: 'Dr. Anthonia Chiozie Nwatu', role: 'Clinical Psychologist', photo: 'staff/DR. ANTHONIA CHIOZIE NWATU.png' },
-                { name: 'Dr. Benedict Chidi Ugwuanyi', role: 'Clinical Psychologist', photo: 'staff/DR. BENEDICT CHIDI UGWUANYI.png' },
-                { name: 'Dr. Bernard Keneschukwu Anikene', role: 'Industral/Organisational Psychologist ', photo: 'staff/DR. BERNARD KENESCHUKWU ANIKENE.png' },
-                { name: 'Dr. Chimezie Chikwendu', role: 'Senior Technologist', photo: 'staff/DR. CHIMEZIE CHIKWENDU.png' },
-                { name: 'Dr. Hycianth Ejike Mgbenkemdi', role: 'Clinical Psychologist', photo: 'staff/DR. HYCIANTH EJIKE MGBENKEMDI.png' },
-                { name: 'Dr. Raphael Ugwu Anike', role: 'Developmental Psychologist', photo: 'staff/DR. RAPHAEL UGWU ANIKE.png' },
-                { name: 'Dr. Uche James Abor', role: 'Clinical Psychologist', photo: 'staff/DR. UCHE JAMES ABOR.png' },
-                { name: 'Jacinta Nwakego Nwachukwu', role: 'Chief Caretaker', photo: 'staff/JACINTA NWAKEGO NWACHUKWU.png' },
-                { name: 'Jude Chukwudi Ekwo', role: 'Clinical Psychologist', photo: 'staff/JUDE CHUKWUDI EKWO.png' },
-                { name: 'Louisa Ifeoma Anikwe', role: 'Developmental Psychologist (Adjunct)', photo: 'staff/LOUISA IFEOMA ANIKWE.png' },
-                { name: 'Michael Arinze Eze', role: 'Industral/Organisational Psychologist', photo: 'staff/MICHAEL ARINZE EZE.png' },
-                { name: 'Pamela Adaobi Ogbozor', role: 'Industral/Organisational Psychologist', photo: 'staff/PAMELA ADAOBI OGBOZOR.png' }
-            ];
-
-            const staff = allStaff.slice().sort((a, b) => {
+            const data = await window.ESUTData.load();
+            staff = (data.staff || []).map(s => ({
+                name: s.name,
+                role: s.role,
+                photo: s.photo
+            })).sort((a, b) => {
                 const ra = rankOrder(a.name);
                 const rb = rankOrder(b.name);
                 if (ra !== rb) return ra - rb;

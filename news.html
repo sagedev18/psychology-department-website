@@ -108,105 +108,107 @@
 
     <script src="site-data.js"></script>
     <script>
-        const siteData = window.ESUTData.load();
-        const newsContainer = document.getElementById('newsListContainer');
-        const eventGallery = document.getElementById('eventGalleryContainer');
-        const currentEvents = document.getElementById('currentEventsContainer');
-        const pastEvents = document.getElementById('pastEventsContainer');
+        (async () => {
+            const siteData = await window.ESUTData.load();
+            const newsContainer = document.getElementById('newsListContainer');
+            const eventGallery = document.getElementById('eventGalleryContainer');
+            const currentEvents = document.getElementById('currentEventsContainer');
+            const pastEvents = document.getElementById('pastEventsContainer');
 
-        const formatDate = (value) => {
-            if (!value) return 'N/A';
-            const date = new Date(`${value}T00:00:00`);
-            return isNaN(date.getTime()) ? value : date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-        };
+            const formatDate = (value) => {
+                if (!value) return 'N/A';
+                const date = new Date(`${value}T00:00:00`);
+                return isNaN(date.getTime()) ? value : date.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            };
 
-        const getEventStatus = (item) => {
-            const today = new Date();
-            const todaysDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            const eventDate = new Date(`${item.date}T00:00:00`);
-            const expiryDate = item.expiryDate ? new Date(`${item.expiryDate}T23:59:59`) : eventDate;
+            const getEventStatus = (item) => {
+                const today = new Date();
+                const todaysDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                const eventDate = new Date(`${item.date}T00:00:00`);
+                const expiryDate = item.expiryDate ? new Date(`${item.expiryDate}T23:59:59`) : eventDate;
 
-            if (todaysDate < eventDate) {
-                return 'Upcoming';
-            }
-
-            if (todaysDate <= expiryDate) {
-                return 'Ongoing';
-            }
-
-            return 'Past';
-        };
-
-        const classifyEvents = (events) => {
-            const today = new Date();
-            const todaysDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-
-            return events.reduce((groups, item) => {
-                const expiryDate = item.expiryDate ? new Date(`${item.expiryDate}T23:59:59`) : new Date(`${item.date}T23:59:59`);
-                const eventStatus = getEventStatus(item);
-                const isCurrent = todaysDate <= expiryDate && eventStatus !== 'Past';
-                if (isCurrent) {
-                    groups.current.push({ ...item, status: eventStatus });
-                } else {
-                    groups.past.push({ ...item, status: 'Past' });
+                if (todaysDate < eventDate) {
+                    return 'Upcoming';
                 }
-                return groups;
-            }, { current: [], past: [] });
-        };
 
-        if (newsContainer) {
-            newsContainer.innerHTML = (siteData.news || []).map(item => `
-                <div class="announcement-card">
-                    <div class="announcement-date"><span class="date-day">${new Date(item.date).getDate()}</span><span class="date-month">${new Date(item.date).toLocaleString('en-US', { month: 'short' })}</span></div>
-                    <div class="announcement-content">
-                        <h3>${item.title}</h3>
-                        <p>${item.summary}</p>
-                        <span class="announcement-tag">${item.category}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
+                if (todaysDate <= expiryDate) {
+                    return 'Ongoing';
+                }
 
-        if (eventGallery) {
-            eventGallery.innerHTML = (siteData.events || []).map(() => `
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="fas fa-image"></i><p>Event Photo</p></div></div>
-            `).join('');
-        }
+                return 'Past';
+            };
 
-        const eventGroups = classifyEvents(siteData.events || []);
+            const classifyEvents = (events) => {
+                const today = new Date();
+                const todaysDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
-        if (currentEvents) {
-            currentEvents.innerHTML = eventGroups.current.length ? eventGroups.current.map(item => `
-                <article class="event-card">
-                    <div class="event-card-header">
-                        <h3>${item.title}</h3>
-                        <span class="announcement-tag event-status-${item.status.toLowerCase()}">${item.status}</span>
-                    </div>
-                    <div class="event-card-body">
-                        <p class="event-meta"><strong>Event Date:</strong> ${formatDate(item.date)}</p>
-                        <p class="event-meta"><strong>Expiry Date:</strong> ${formatDate(item.expiryDate || item.date)}</p>
-                        <p class="event-meta"><strong>Venue:</strong> ${item.venue}</p>
-                        <p class="event-description">${item.description}</p>
-                    </div>
-                </article>
-            `).join('') : '<p>No current events available.</p>';
-        }
+                return events.reduce((groups, item) => {
+                    const expiryDate = item.expiryDate ? new Date(`${item.expiryDate}T23:59:59`) : new Date(`${item.date}T23:59:59`);
+                    const eventStatus = getEventStatus(item);
+                    const isCurrent = todaysDate <= expiryDate && eventStatus !== 'Past';
+                    if (isCurrent) {
+                        groups.current.push({ ...item, status: eventStatus });
+                    } else {
+                        groups.past.push({ ...item, status: 'Past' });
+                    }
+                    return groups;
+                }, { current: [], past: [] });
+            };
 
-        if (pastEvents) {
-            pastEvents.innerHTML = eventGroups.past.length ? eventGroups.past.map(item => `
-                <article class="event-card event-card-past">
-                    <div class="event-card-header">
-                        <h3>${item.title}</h3>
-                        <span class="announcement-tag event-status-${item.status.toLowerCase()}">${item.status}</span>
+            if (newsContainer) {
+                newsContainer.innerHTML = (siteData.news || []).map(item => `
+                    <div class="announcement-card">
+                        <div class="announcement-date"><span class="date-day">${new Date(item.date).getDate()}</span><span class="date-month">${new Date(item.date).toLocaleString('en-US', { month: 'short' })}</span></div>
+                        <div class="announcement-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.summary}</p>
+                            <span class="announcement-tag">${item.category}</span>
+                        </div>
                     </div>
-                    <div class="event-card-body">
-                        <p class="event-meta"><strong>Date:</strong> ${formatDate(item.date)}</p>
-                        <p class="event-meta"><strong>Venue:</strong> ${item.venue}</p>
-                        <p class="event-description">${item.description}</p>
-                    </div>
-                </article>
-            `).join('') : '<p>No past events available.</p>';
-        }
+                `).join('');
+            }
+
+            if (eventGallery) {
+                eventGallery.innerHTML = (siteData.events || []).map(() => `
+                    <div class="gallery-item"><div class="gallery-placeholder"><i class="fas fa-image"></i><p>Event Photo</p></div></div>
+                `).join('');
+            }
+
+            const eventGroups = classifyEvents(siteData.events || []);
+
+            if (currentEvents) {
+                currentEvents.innerHTML = eventGroups.current.length ? eventGroups.current.map(item => `
+                    <article class="event-card">
+                        <div class="event-card-header">
+                            <h3>${item.title}</h3>
+                            <span class="announcement-tag event-status-${item.status.toLowerCase()}">${item.status}</span>
+                        </div>
+                        <div class="event-card-body">
+                            <p class="event-meta"><strong>Event Date:</strong> ${formatDate(item.date)}</p>
+                            <p class="event-meta"><strong>Expiry Date:</strong> ${formatDate(item.expiryDate || item.date)}</p>
+                            <p class="event-meta"><strong>Venue:</strong> ${item.venue}</p>
+                            <p class="event-description">${item.description}</p>
+                        </div>
+                    </article>
+                `).join('') : '<p>No current events available.</p>';
+            }
+
+            if (pastEvents) {
+                pastEvents.innerHTML = eventGroups.past.length ? eventGroups.past.map(item => `
+                    <article class="event-card event-card-past">
+                        <div class="event-card-header">
+                            <h3>${item.title}</h3>
+                            <span class="announcement-tag event-status-${item.status.toLowerCase()}">${item.status}</span>
+                        </div>
+                        <div class="event-card-body">
+                            <p class="event-meta"><strong>Date:</strong> ${formatDate(item.date)}</p>
+                            <p class="event-meta"><strong>Venue:</strong> ${item.venue}</p>
+                            <p class="event-description">${item.description}</p>
+                        </div>
+                    </article>
+                `).join('') : '<p>No past events available.</p>';
+            }
+        })();
     </script>
     <script src="app.js"></script>
 

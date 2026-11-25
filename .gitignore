@@ -5,6 +5,11 @@ _admin_backup/
 *.tmp
 *.temp
 
+# Environment files (contains secrets)
+.env
+.env.local
+.env.*.local
+
 # Debug/temporary text files
 a.txt
 b3.txt

@@ -1,0 +1,15 @@
+{
+  "name": "esut-psychology-department",
+  "version": "1.0.0",
+  "description": "ESUT Department of Psychology Website with Admin Dashboard",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@vercel/kv": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}

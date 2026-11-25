@@ -165,7 +165,21 @@
     }
 }
 
-/* Fix for overlapping header on anchor links */
+/* Button spacing on mobile */
+@media (max-width: 768px) {
+    .btn, button {
+        margin: 6px 4px;
+    }
+    .hero-buttons, .button-group, .form-actions, .filter-buttons {
+        gap: 10px;
+    }
+}
+/* Hide header on scroll down (mobile) */
+@media (max-width: 768px) {
+    .header.header-hidden {
+        transform: translateY(-100%);
+    }
+}
 :target::before {
     content: "";
     display: block;

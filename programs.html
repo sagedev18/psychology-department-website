@@ -169,11 +169,13 @@
             });
         });
 
-        const programsData = window.ESUTData.load();
-        const programsList = document.getElementById('programsList');
-        if (programsList) {
-            programsList.innerHTML = '';
-        }
+        (async () => {
+            const programsData = await window.ESUTData.load();
+            const programsList = document.getElementById('programsList');
+            if (programsList) {
+                programsList.innerHTML = '';
+            }
+        })();
     </script>
     <script src="app.js"></script>
 

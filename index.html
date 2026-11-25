@@ -231,20 +231,22 @@
 
     <script src="site-data.js"></script>
     <script>
-        const data = window.ESUTData.load();
-        const homeNewsList = document.getElementById('homeNewsList');
-        const recentNews = (data.news || []).slice(0, 3);
+        (async () => {
+            const data = await window.ESUTData.load();
+            const homeNewsList = document.getElementById('homeNewsList');
+            const recentNews = (data.news || []).slice(0, 3);
 
-        homeNewsList.innerHTML = recentNews.map(item => `
-            <div class="announcement-card">
-                <div class="announcement-date"><span class="date-day">${new Date(item.date).getDate()}</span><span class="date-month">${new Date(item.date).toLocaleString('en-US', { month: 'short' })}</span></div>
-                <div class="announcement-content">
-                    <h3>${item.title}</h3>
-                    <p>${item.summary}</p>
-                    <span class="announcement-tag">${item.category}</span>
+            homeNewsList.innerHTML = recentNews.map(item => `
+                <div class="announcement-card">
+                    <div class="announcement-date"><span class="date-day">${new Date(item.date).getDate()}</span><span class="date-month">${new Date(item.date).toLocaleString('en-US', { month: 'short' })}</span></div>
+                    <div class="announcement-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.summary}</p>
+                        <span class="announcement-tag">${item.category}</span>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        })();
     </script>
 
     <!-- Admin Modal (for site-wide admin access from any page) -->
