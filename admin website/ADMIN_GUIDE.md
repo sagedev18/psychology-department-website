@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ADMIN SETUP GUIDE
 ================
 
@@ -39,7 +38,6 @@ Next steps:
 4. Connect to storage (Netlify/JSON Server)
 
 This way admins can add/edit news, events, courses, staff, timetable info.
-=======
 ADMIN SETUP GUIDE
 ================
 
@@ -80,13 +78,9 @@ Next steps:
 4. Connect to storage (Netlify/JSON Server)
 
 This way admins can add/edit news, events, courses, staff, timetable info.
->>>>>>> 6dbc6aba7ceb384027b4a9ba7e03a23cfd576b58
 /** Admin separate setup **/
 Build admin in separate folder (e.g. esut-admin) not in same folder as public site.
 - public site: esut website/ (static)
 - admin: esut-admin/ (can be Netlify CMS or custom app)
-<<<<<<< HEAD
 Admin updates data (JSON/DB) and deploys/publishes changes to main site.
-=======
 Admin updates data (JSON/DB) and deploys/publishes changes to main site.
->>>>>>> 6dbc6aba7ceb384027b4a9ba7e03a23cfd576b58

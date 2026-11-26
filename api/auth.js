@@ -1,7 +1,7 @@
 import { kv } from '@vercel/kv';
 
 const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'iamadmin22#';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'esut-psychology-secret-key';
 
 function generateSessionToken() {

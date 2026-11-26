@@ -11,13 +11,6 @@ const generateId = (prefix) => dataStore.createId(prefix);
 
 let currentData = null;
 
-function showMessage(id, text, isError = false) {
-    const node = document.getElementById(id);
-    if (!node) return;
-    node.textContent = text;
-    node.style.color = isError ? '#b42318' : '#701500';
-}
-
 function setButtonLoading(button, loading) {
     if (!button) return;
     button.disabled = loading;
@@ -25,6 +18,40 @@ function setButtonLoading(button, loading) {
     button.textContent = loading ? 'Saving...' : button.dataset.originalText;
 }
 
+// ---- Local Authentication (works without Vercel KV) ----
+function getStoredAdminSession() {
+    try {
+        const raw = localStorage.getItem('esutAdminSession');
+        if (!raw) return null;
+        const session = JSON.parse(raw);
+        if (session && session.username === ADMIN_USERNAME && session.expiresAt > Date.now()) {
+            return session;
+        }
+        return null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function setStoredAdminSession() {
+    const token = `esut_local_${Date.now()}_${Math.random().toString(36).slice(2, 16)}`;
+    localStorage.setItem('esutAdminSession', JSON.stringify({
+        username: ADMIN_USERNAME,
+        token,
+        expiresAt: Date.now() + 24 * 60 * 60 * 1000 // 24 hours
+    }));
+    return token;
+}
+
+function clearStoredAdminSession() {
+    localStorage.removeItem('esutAdminSession');
+}
+
+function isAdminAuthenticated() {
+    return !!getStoredAdminSession();
+}
+
+// ---- API Auth (Vercel KV, with local fallback) ----
 async function apiAuth(action, payload = {}) {
     try {
         const response = await fetch('/api/auth', {
@@ -40,22 +67,29 @@ async function apiAuth(action, payload = {}) {
 }
 
 function getSessionToken() {
-    return localStorage.getItem('esutAdminToken');
+    const session = getStoredAdminSession();
+    return session ? session.token : null;
 }
 
 function setSessionToken(token) {
-    localStorage.setItem('esutAdminToken', token);
+    // Token is managed internally via localStorage session
 }
 
 function clearSessionToken() {
-    localStorage.removeItem('esutAdminToken');
+    clearStoredAdminSession();
 }
 
 async function verifySession() {
     const token = getSessionToken();
     if (!token) return false;
-    const result = await apiAuth('verify', { token });
-    return result.success && result.valid;
+    const localSession = getStoredAdminSession();
+    if (localSession) return true;
+    try {
+        const result = await apiAuth('verify', { token });
+        return result.success && result.valid;
+    } catch (e) {
+        return false;
+    }
 }
 
 if (document.body.id === 'login-page') {
@@ -73,19 +107,26 @@ if (document.body.id === 'login-page') {
         const submitBtn = loginForm.querySelector('button[type="submit"]');
 
         setButtonLoading(submitBtn, true);
-        showMessage('loginMessage', '');
 
-        const result = await apiAuth('login', { username, password });
+        // Try API first, fall back to local credential check
+        let apiResult = await apiAuth('login', { username, password });
 
-        setButtonLoading(submitBtn, false);
-
-        if (result.success && result.token) {
-            setSessionToken(result.token);
+        if (apiResult.success && apiResult.token) {
+            setStoredAdminSession();
             window.location.href = 'dashboard.html';
             return;
         }
 
-        showMessage('loginMessage', result.error || 'Invalid username or password.', true);
+        // Local fallback: check credentials directly
+        if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+            setStoredAdminSession();
+            window.location.href = 'dashboard.html';
+            return;
+        }
+
+        setButtonLoading(submitBtn, false);
+        document.getElementById('loginMessage').textContent = apiResult.error || 'Invalid username or password.';
+        document.getElementById('loginMessage').style.color = '#b42318';
     });
 }
 
@@ -226,20 +267,33 @@ if (document.body.id === 'dashboard-page') {
                 li.insertBefore(img, meta);
             }
 
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = 'delete-btn';
-            button.textContent = 'Delete';
-            button.addEventListener('click', async () => {
-                button.disabled = true;
-                button.textContent = 'Deleting...';
+            // Edit button
+            const editBtn = document.createElement('button');
+            editBtn.type = 'button';
+            editBtn.className = 'edit-btn';
+            editBtn.textContent = 'Edit';
+            editBtn.addEventListener('click', () => openEditForm(type, item));
+
+            // Delete button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.type = 'button';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', async () => {
+                deleteBtn.disabled = true;
+                deleteBtn.textContent = 'Deleting...';
                 await deleteItem(type, item.id);
                 currentData = await getData();
                 renderDashboard();
             });
 
+            const btnGroup = document.createElement('div');
+            btnGroup.className = 'btn-group';
+            btnGroup.appendChild(editBtn);
+            btnGroup.appendChild(deleteBtn);
+
             li.appendChild(meta);
-            li.appendChild(button);
+            li.appendChild(btnGroup);
             list.appendChild(li);
         });
     }
@@ -253,71 +307,197 @@ if (document.body.id === 'dashboard-page') {
         renderList('galleryList', currentData.gallery, 'gallery');
     }
 
+    // ===== EDIT / CANCEL HELPERS =====
+    function openEditForm(type, item) {
+        const forms = { news: document.getElementById('newsForm'), events: document.getElementById('eventForm'), courses: document.getElementById('courseForm'), staff: document.getElementById('staffForm'), gallery: document.getElementById('galleryForm') };
+        const form = forms[type];
+        if (!form) return;
+        form.dataset.editingId = item.id;
+        form.dataset.editingType = type;
+        if (type === 'news') {
+            document.getElementById('newsTitle').value = item.title || '';
+            document.getElementById('newsDate').value = item.date || '';
+            document.getElementById('newsCategory').value = item.category || 'Announcement';
+            document.getElementById('newsSummary').value = item.summary || '';
+            form.querySelector('button[type="submit"]').textContent = 'Update News';
+        }
+        if (type === 'events') {
+            document.getElementById('eventTitle').value = item.title || '';
+            document.getElementById('eventDate').value = item.date || '';
+            document.getElementById('eventExpiryDate').value = item.expiryDate || '';
+            document.getElementById('eventVenue').value = item.venue || '';
+            document.getElementById('eventDescription').value = item.description || '';
+            form.querySelector('button[type="submit"]').textContent = 'Update Event';
+        }
+        if (type === 'courses') {
+            document.getElementById('courseLevel').value = item.level || '100 Level';
+            document.getElementById('courseCode').value = item.code || '';
+            document.getElementById('courseTitle').value = item.title || '';
+            document.getElementById('courseDescription').value = item.description || '';
+            form.querySelector('button[type="submit"]').textContent = 'Update Course';
+        }
+        if (type === 'staff') {
+            document.getElementById('staffName').value = item.name || '';
+            document.getElementById('staffRole').value = item.role || '';
+            document.getElementById('staffEmail').value = item.email || '';
+            document.getElementById('staffCategory').value = item.category || 'Academic';
+            document.getElementById('staffPhoto').value = item.photo || '';
+            const preview = document.getElementById('staffPhotoPreview');
+            if (item.photo) { preview.src = item.photo; preview.classList.add('show'); }
+            form.querySelector('button[type="submit"]').textContent = 'Update Staff';
+        }
+        if (type === 'gallery') {
+            document.getElementById('galleryDescription').value = item.description || '';
+            document.getElementById('galleryImage').value = item.image || '';
+            const preview = document.getElementById('galleryImagePreview');
+            if (item.image) { preview.src = item.image; preview.classList.add('show'); }
+            form.querySelector('button[type="submit"]').textContent = 'Update Gallery';
+        }
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function cancelEdit(form) {
+        delete form.dataset.editingId;
+        delete form.dataset.editingType;
+        form.reset();
+        const preview = form.querySelector('.photo-preview');
+        if (preview) { preview.src = ''; preview.classList.remove('show'); }
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const type = form.id.replace('Form', '');
+        const btnText = { news: 'Add News', event: 'Add Event', course: 'Add Course', staff: 'Add Staff', gallery: 'Add to Gallery' };
+        if (submitBtn && btnText[type]) submitBtn.textContent = btnText[type];
+    }
+
+    function addCancelButtons() {
+        const formConfigs = [
+            { id: 'newsForm', btnText: 'Add News' },
+            { id: 'eventForm', btnText: 'Add Event' },
+            { id: 'courseForm', btnText: 'Add Course' },
+            { id: 'staffForm', btnText: 'Add Staff' },
+            { id: 'galleryForm', btnText: 'Add to Gallery' }
+        ];
+        formConfigs.forEach(({ id, btnText }) => {
+            const form = document.getElementById(id);
+            if (!form || form.querySelector('.cancel-edit-btn')) return;
+            const cancelBtn = document.createElement('button');
+            cancelBtn.type = 'button';
+            cancelBtn.className = 'secondary-btn cancel-edit-btn';
+            cancelBtn.textContent = 'Cancel Edit';
+            cancelBtn.style.display = 'none';
+            cancelBtn.style.marginLeft = '10px';
+            cancelBtn.addEventListener('click', () => {
+                cancelEdit(form);
+                cancelBtn.style.display = 'none';
+                form.querySelector('button[type="submit"]').textContent = btnText;
+            });
+            const submitBtn = form.querySelector('button[type="submit"]);
+            submitBtn.parentNode.insertBefore(cancelBtn, submitBtn.nextSibling);
+        });
+    }
+
     async function handleNewsSubmit(event) {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const submitBtn = event.currentTarget.querySelector('button[type="submit"]');
+        const form = event.currentTarget;
+        const editingId = form.dataset.editingId;
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
 
         setButtonLoading(submitBtn, true);
 
-        const newItem = await addItem('news', {
+        const itemData = {
             title: formData.get('title').toString().trim(),
             date: formData.get('date').toString(),
             category: formData.get('category').toString(),
             summary: formData.get('summary').toString().trim()
-        });
+        };
+
+        if (editingId) {
+            itemData.id = editingId;
+            await updateItem('news', itemData);
+        } else {
+            await addItem('news', itemData);
+        }
 
         currentData = await getData();
-        event.currentTarget.reset();
+        form.reset();
+        delete form.dataset.editingId;
+        delete form.dataset.editingType;
+        submitBtn.textContent = 'Add News';
         renderDashboard();
         setButtonLoading(submitBtn, false);
     }
 
     async function handleEventSubmit(event) {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const submitBtn = event.currentTarget.querySelector('button[type="submit"]');
+        const form = event.currentTarget;
+        const editingId = form.dataset.editingId;
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
 
         setButtonLoading(submitBtn, true);
 
-        await addItem('events', {
+        const itemData = {
             title: formData.get('title').toString().trim(),
             date: formData.get('date').toString(),
             expiryDate: formData.get('expiryDate').toString(),
             venue: formData.get('venue').toString().trim(),
             description: formData.get('description').toString().trim()
-        });
+        };
+
+        if (editingId) {
+            itemData.id = editingId;
+            await updateItem('events', itemData);
+        } else {
+            await addItem('events', itemData);
+        }
 
         currentData = await getData();
-        event.currentTarget.reset();
+        form.reset();
+        delete form.dataset.editingId;
+        delete form.dataset.editingType;
+        submitBtn.textContent = 'Add Event';
         renderDashboard();
         setButtonLoading(submitBtn, false);
     }
 
     async function handleCourseSubmit(event) {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const submitBtn = event.currentTarget.querySelector('button[type="submit"]');
+        const form = event.currentTarget;
+        const editingId = form.dataset.editingId;
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
 
         setButtonLoading(submitBtn, true);
 
-        await addItem('courses', {
+        const itemData = {
             level: formData.get('level').toString(),
             code: formData.get('code').toString().trim(),
             title: formData.get('title').toString().trim(),
             description: formData.get('description').toString().trim()
-        });
+        };
+
+        if (editingId) {
+            itemData.id = editingId;
+            await updateItem('courses', itemData);
+        } else {
+            await addItem('courses', itemData);
+        }
 
         currentData = await getData();
-        event.currentTarget.reset();
+        form.reset();
+        delete form.dataset.editingId;
+        delete form.dataset.editingType;
+        submitBtn.textContent = 'Add Course';
         renderDashboard();
         setButtonLoading(submitBtn, false);
     }
 
     async function handleStaffSubmit(event) {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const submitBtn = event.currentTarget.querySelector('button[type="submit"]');
+        const form = event.currentTarget;
+        const editingId = form.dataset.editingId;
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
         const photoHiddenInput = document.getElementById('staffPhoto');
         const photoPreview = document.getElementById('staffPhotoPreview');
 
@@ -325,27 +505,39 @@ if (document.body.id === 'dashboard-page') {
 
         const photoValue = photoHiddenInput.value || formData.get('photo').toString().trim();
 
-        await addItem('staff', {
+        const itemData = {
             name: formData.get('name').toString().trim(),
             role: formData.get('role').toString().trim(),
             category: formData.get('category').toString().trim() || 'Academic',
             email: formData.get('email').toString().trim(),
             photo: photoValue
-        });
+        };
+
+        if (editingId) {
+            itemData.id = editingId;
+            await updateItem('staff', itemData);
+        } else {
+            await addItem('staff', itemData);
+        }
 
         currentData = await getData();
-        event.currentTarget.reset();
+        form.reset();
         photoPreview.src = '';
         photoPreview.classList.remove('show');
         photoHiddenInput.value = '';
+        delete form.dataset.editingId;
+        delete form.dataset.editingType;
+        submitBtn.textContent = 'Add Staff';
         renderDashboard();
         setButtonLoading(submitBtn, false);
     }
 
     async function handleGallerySubmit(event) {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const submitBtn = event.currentTarget.querySelector('button[type="submit"]');
+        const form = event.currentTarget;
+        const editingId = form.dataset.editingId;
+        const formData = new FormData(form);
+        const submitBtn = form.querySelector('button[type="submit"]');
         const imageHiddenInput = document.getElementById('galleryImage');
         const imagePreview = document.getElementById('galleryImagePreview');
 
@@ -353,19 +545,31 @@ if (document.body.id === 'dashboard-page') {
 
         const imageValue = imageHiddenInput.value || formData.get('image').toString().trim();
 
-        await addItem('gallery', {
+        const itemData = {
             description: formData.get('description').toString().trim(),
             image: imageValue
-        });
+        };
+
+        if (editingId) {
+            itemData.id = editingId;
+            await updateItem('gallery', itemData);
+        } else {
+            await addItem('gallery', itemData);
+        }
 
         currentData = await getData();
-        event.currentTarget.reset();
+        form.reset();
         imagePreview.src = '';
         imagePreview.classList.remove('show');
         imageHiddenInput.value = '';
+        delete form.dataset.editingId;
+        delete form.dataset.editingType;
+        submitBtn.textContent = 'Add to Gallery';
         renderDashboard();
         setButtonLoading(submitBtn, false);
     }
+
+    addCancelButtons();
 }
 
 window.addEventListener('esutDataChanged', async (event) => {
