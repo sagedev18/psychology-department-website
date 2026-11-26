@@ -1,4 +1,4 @@
-import { kv } from '@vercel/kv';
+import { createClient } from 'redis';
 
 const DATA_KEY = 'esut_department_data';
 const defaultData = {
@@ -15,20 +15,33 @@ const defaultData = {
     gallery: []
 };
 
+let redisClient;
+async function getRedis() {
+    if (!process.env.REDIS_URL) throw new Error('REDIS_URL is not configured. Connect Vercel Redis and redeploy.');
+    if (!redisClient) {
+        redisClient = createClient({ url: process.env.REDIS_URL });
+        redisClient.on('error', error => console.error('Redis error:', error));
+    }
+    if (!redisClient.isOpen) await redisClient.connect();
+    return redisClient;
+}
+
 async function getData() {
-    const stored = await kv.get(DATA_KEY);
+    const redis = await getRedis();
+    const stored = await redis.get(DATA_KEY);
     if (!stored) {
-        await kv.set(DATA_KEY, defaultData);
+        await redis.set(DATA_KEY, JSON.stringify(defaultData));
         return defaultData;
     }
+    const data = JSON.parse(stored);
     return {
         ...defaultData,
-        ...stored,
-        news: Array.isArray(stored.news) ? stored.news : defaultData.news,
-        events: Array.isArray(stored.events) ? stored.events : defaultData.events,
-        courses: Array.isArray(stored.courses) ? stored.courses : defaultData.courses,
-        staff: Array.isArray(stored.staff) ? stored.staff : defaultData.staff,
-        gallery: Array.isArray(stored.gallery) ? stored.gallery : defaultData.gallery
+        ...data,
+        news: Array.isArray(data.news) ? data.news : defaultData.news,
+        events: Array.isArray(data.events) ? data.events : defaultData.events,
+        courses: Array.isArray(data.courses) ? data.courses : defaultData.courses,
+        staff: Array.isArray(data.staff) ? data.staff : defaultData.staff,
+        gallery: Array.isArray(data.gallery) ? data.gallery : defaultData.gallery
     };
 }
 
@@ -37,14 +50,12 @@ export default async function handler(request, response) {
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
     if (request.method === 'OPTIONS') return response.status(200).end();
     if (request.method !== 'GET') return response.status(405).json({ success: false, error: 'Method not allowed' });
-
     try {
         return response.status(200).json({ success: true, data: await getData() });
     } catch (error) {
-        console.error('KV read error:', error);
-        return response.status(503).json({ success: false, error: 'Shared content storage is unavailable. Connect Vercel KV to this deployment and retry.' });
+        console.error('Redis read error:', error);
+        return response.status(503).json({ success: false, error: 'Shared content storage is unavailable. Connect Vercel Redis and redeploy.' });
     }
 }
