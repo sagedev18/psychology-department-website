@@ -1,0 +1,107 @@
+/* ESUT Admin theme switch: warm university maroon in both themes. */
+:root {
+    color-scheme: light;
+    --admin-page-bg: linear-gradient(135deg, #fffaf9 0%, #f9e5e2 100%);
+    --admin-card: #ffffff;
+    --admin-paper: #fffaf9;
+    --admin-text: #1a1a1a;
+    --admin-muted: #5f636d;
+    --admin-line: #ead9d6;
+    --admin-shadow: 0 16px 34px rgba(112, 21, 0, 0.10);
+}
+
+:root[data-admin-theme="dark"] {
+    color-scheme: dark;
+    --admin-page-bg: radial-gradient(ellipse at top right, rgba(112, 21, 0, 0.30), transparent 42%), #171416;
+    --admin-card: #242022;
+    --admin-paper: #2b2527;
+    --admin-text: #f5eeee;
+    --admin-muted: #c1b4b6;
+    --admin-line: #49383b;
+    --admin-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
+    --primary: #ff9a86;
+    --primary-dark: #e85f49;
+    --secondary: #f28a75;
+    --paper: #2b2527;
+    --bg: #171416;
+    --card: #242022;
+    --text: #f5eeee;
+    --muted: #c1b4b6;
+    --line: #49383b;
+}
+
+html, body {
+    background: var(--admin-page-bg);
+    color: var(--admin-text);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.dashboard-main { min-width: 0; }
+.topbar, .panel, .login-box {
+    background: var(--admin-card);
+    color: var(--admin-text);
+    box-shadow: var(--admin-shadow);
+}
+.topbar h1, .panel h2, .list-box h3, .item-meta strong { color: var(--primary); }
+.item-meta span, .stat-card span { color: var(--admin-muted); }
+.stat-card, .item-list li {
+    background: var(--admin-paper);
+    border-color: var(--admin-line);
+    color: var(--admin-text);
+}
+.list-box { border-color: var(--admin-line); }
+.admin-form input, .admin-form select, .admin-form textarea,
+.login-box input, .login-box select, .login-box textarea {
+    background: var(--admin-paper);
+    border-color: var(--admin-line);
+    color: var(--admin-text);
+}
+.admin-form input::placeholder, .admin-form textarea::placeholder { color: var(--admin-muted); }
+.secondary-btn { background: var(--admin-card); color: var(--primary); border-color: var(--admin-line); }
+.edit-btn { background: rgba(246, 118, 101, 0.14); color: var(--primary); }
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 46px;
+    padding: 10px 15px;
+    border: 1px solid var(--admin-line);
+    border-radius: 12px;
+    background: var(--admin-paper);
+    color: var(--primary);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:hover { transform: translateY(-1px); border-color: var(--secondary); }
+.theme-toggle:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
+.theme-toggle-icon { font-size: 1.15rem; line-height: 1; }
+
+:root[data-admin-theme="dark"] .admin-warning-banner {
+    background: #3a2b17 !important;
+    border-color: #b7791f;
+    color: #ff9b91 !important;
+}
+:root[data-admin-theme="dark"] .admin-warning-banner i { color: #ff9b91 !important; }
+
+@media (max-width: 900px) {
+    .topbar-actions { width: 100%; justify-content: space-between; }
+    .theme-toggle, #saveBtn { flex: 1 1 auto; }
+}
+@media (max-width: 600px) {
+    .topbar-actions { flex-direction: column; align-items: stretch; }
+    .theme-toggle, #saveBtn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
+}
