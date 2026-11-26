@@ -1,48 +1,49 @@
-/* ESUT Admin theme switch: warm university maroon in both themes. */
+/* ESUT Admin theme: restrained maroon, warm neutral surfaces, high contrast. */
 :root {
     color-scheme: light;
-    --admin-page-bg: linear-gradient(135deg, #fffaf9 0%, #f9e5e2 100%);
+    --admin-page-bg: #f3f1ef;
     --admin-card: #ffffff;
-    --admin-paper: #fffaf9;
-    --admin-text: #1a1a1a;
-    --admin-muted: #5f636d;
-    --admin-line: #ead9d6;
-    --admin-shadow: 0 16px 34px rgba(112, 21, 0, 0.10);
+    --admin-paper: #faf9f8;
+    --admin-text: #292524;
+    --admin-muted: #625c59;
+    --admin-line: #d8d1ce;
+    --admin-shadow: 0 8px 24px rgba(48, 30, 25, 0.08);
+    --admin-accent: #701500;
+    --admin-accent-hover: #541000;
+    --admin-button-text: #ffffff;
 }
 
 :root[data-admin-theme="dark"] {
     color-scheme: dark;
-    --admin-page-bg: radial-gradient(ellipse at top right, rgba(112, 21, 0, 0.30), transparent 42%), #171416;
-    --admin-card: #242022;
-    --admin-paper: #2b2527;
-    --admin-text: #f5eeee;
-    --admin-muted: #c1b4b6;
-    --admin-line: #49383b;
-    --admin-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
-    --primary: #ff9a86;
-    --primary-dark: #e85f49;
-    --secondary: #f28a75;
-    --paper: #2b2527;
-    --bg: #171416;
-    --card: #242022;
-    --text: #f5eeee;
-    --muted: #c1b4b6;
-    --line: #49383b;
+    --admin-page-bg: #191718;
+    --admin-card: #252122;
+    --admin-paper: #302b2c;
+    --admin-text: #f2eeee;
+    --admin-muted: #c4babb;
+    --admin-line: #504748;
+    --admin-shadow: 0 10px 28px rgba(0, 0, 0, 0.24);
+    --admin-accent: #813d3d;
+    --admin-accent-hover: #985050;
+    --admin-button-text: #ffffff;
+    --primary: #e8c9c4;
+    --primary-dark: #c9958e;
+    --secondary: #bd7770;
+    --paper: #302b2c;
+    --bg: #191718;
+    --card: #252122;
+    --text: #f2eeee;
+    --muted: #c4babb;
+    --line: #504748;
 }
 
-html, body {
-    background: var(--admin-page-bg);
-    color: var(--admin-text);
-    transition: background-color 0.25s ease, color 0.25s ease;
-}
-
+html, body { background: var(--admin-page-bg); color: var(--admin-text); }
 .dashboard-main { min-width: 0; }
 .topbar, .panel, .login-box {
     background: var(--admin-card);
     color: var(--admin-text);
     box-shadow: var(--admin-shadow);
 }
-.topbar h1, .panel h2, .list-box h3, .item-meta strong { color: var(--primary); }
+.topbar h1, .panel h2, .list-box h3, .item-meta strong { color: var(--admin-text); }
 .item-meta span, .stat-card span { color: var(--admin-muted); }
 .stat-card, .item-list li {
     background: var(--admin-paper);
@@ -56,9 +57,44 @@ html, body {
     border-color: var(--admin-line);
     color: var(--admin-text);
 }
-.admin-form input::placeholder, .admin-form textarea::placeholder { color: var(--admin-muted); }
-.secondary-btn { background: var(--admin-card); color: var(--primary); border-color: var(--admin-line); }
-.edit-btn { background: rgba(246, 118, 101, 0.14); color: var(--primary); }
+.admin-form input::placeholder, .admin-form textarea::placeholder { color: var(--admin-muted); opacity: 1; }
+.admin-form label, .login-box label { color: var(--admin-text); }
+
+/* Solid ESUT maroon buttons keep labels readable in either theme. */
+.admin-shell .primary-btn,
+.admin-shell #saveBtn {
+    color: var(--admin-button-text);
+    background: var(--admin-accent);
+    border: 1px solid var(--admin-accent);
+    box-shadow: none;
+}
+.admin-shell .primary-btn:hover,
+.admin-shell #saveBtn:hover { color: #fff; background: var(--admin-accent-hover); }
+.admin-shell .secondary-btn,
+.admin-shell .theme-toggle {
+    color: var(--admin-text);
+    background: var(--admin-paper);
+    border: 1px solid var(--admin-line);
+}
+.admin-shell .secondary-btn:hover,
+.admin-shell .theme-toggle:hover { color: var(--admin-text); background: var(--admin-card); border-color: var(--admin-muted); }
+.admin-shell .edit-btn {
+    color: var(--admin-accent);
+    background: transparent;
+    border: 1px solid var(--admin-accent);
+}
+.admin-shell .delete-btn {
+    color: #a32626;
+    background: transparent;
+    border: 1px solid #a32626;
+}
+:root[data-admin-theme="dark"] .admin-shell .edit-btn { color: #e3b2ac; border-color: #b87973; }
+:root[data-admin-theme="dark"] .admin-shell .delete-btn { color: #ffaaa5; border-color: #c56d68; }
+.admin-shell button:focus-visible, .admin-shell a:focus-visible, .admin-shell input:focus-visible,
+.admin-shell select:focus-visible, .admin-shell textarea:focus-visible {
+    outline: 3px solid #b07a37;
+    outline-offset: 2px;
+}
 
 .topbar-actions {
     display: flex;
@@ -74,24 +110,37 @@ html, body {
     gap: 9px;
     min-height: 46px;
     padding: 10px 15px;
-    border: 1px solid var(--admin-line);
-    border-radius: 12px;
-    background: var(--admin-paper);
-    color: var(--primary);
-    font-weight: 700;
+    border-radius: 10px;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    transition: background 0.18s ease, border-color 0.18s ease;
 }
-.theme-toggle:hover { transform: translateY(-1px); border-color: var(--secondary); }
-.theme-toggle:focus-visible { outline: 3px solid var(--secondary); outline-offset: 3px; }
-.theme-toggle-icon { font-size: 1.15rem; line-height: 1; }
+.theme-toggle-icon { font-size: 1.1rem; line-height: 1; }
 
 :root[data-admin-theme="dark"] .admin-warning-banner {
-    background: #3a2b17 !important;
-    border-color: #b7791f;
-    color: #ff9b91 !important;
+    background: #382d20 !important;
+    border-color: #927143;
+    color: #f0c1ba !important;
 }
-:root[data-admin-theme="dark"] .admin-warning-banner i { color: #ff9b91 !important; }
+:root[data-admin-theme="dark"] .admin-warning-banner i { color: #f0c1ba !important; }
+
+.sync-status {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 2000;
+    max-width: min(440px, calc(100vw - 40px));
+    padding: 13px 16px;
+    border: 1px solid var(--admin-line);
+    border-left: 4px solid var(--admin-accent);
+    border-radius: 8px;
+    background: var(--admin-card);
+    color: var(--admin-text);
+    box-shadow: var(--admin-shadow);
+    font-size: 0.9rem;
+}
+.sync-status[data-state="error"] { border-left-color: #b42318; }
+.sync-status[data-state="success"] { border-left-color: #35734a; }
 
 @media (max-width: 900px) {
     .topbar-actions { width: 100%; justify-content: space-between; }
@@ -100,8 +149,8 @@ html, body {
 @media (max-width: 600px) {
     .topbar-actions { flex-direction: column; align-items: stretch; }
     .theme-toggle, #saveBtn { width: 100%; }
+    .sync-status { right: 12px; bottom: 12px; max-width: calc(100vw - 24px); }
 }
-
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }

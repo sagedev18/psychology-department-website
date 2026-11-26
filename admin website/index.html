@@ -13,89 +13,70 @@
 </head>
 <body id="login-page" class="admin-shell">
     <header class="header">
-        <div class="top-bar">
-            <div class="container">
-                <div class="top-bar-content">
-                    <div class="logo-section">
-                        <img src="../Enugu-State-University-of-Science-and-Technology-logo.jpg" alt="ESUT Logo" class="logo-img">
-                        <div class="logo-text">
-                            <h1>Department of Psychology</h1>
-                            <p class="logo-subtext">Enugu State University of Science and Technology</p>
-                        </div>
-                    </div>
-                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
-                </div>
+        <div class="top-bar"><div class="container"><div class="top-bar-content">
+            <div class="logo-section">
+                <img src="../Enugu-State-University-of-Science-and-Technology-logo.jpg" alt="ESUT Logo" class="logo-img">
+                <div class="logo-text"><h1>Department of Psychology</h1><p class="logo-subtext">Enugu State University of Science and Technology</p></div>
             </div>
-        </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+        </div></div></div>
         <nav class="nav-bar" id="navBar"><div class="container"><ul class="nav-menu">
-                    <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-                    <li class="nav-item"><a href="../about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
-                    <li class="nav-item"><a href="../programs.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Programs</a></li>
-                    <li class="nav-item"><a href="../academics.html" class="nav-link"><i class="fas fa-book-open"></i> Academics</a></li>
-                    <li class="nav-item"><a href="../news.html" class="nav-link"><i class="fas fa-newspaper"></i> News & Events</a></li>
-                    <li class="nav-item"><a href="../staff.html" class="nav-link"><i class="fas fa-users"></i> Staff</a></li>
-                    <li class="nav-item"><a href="../contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
-                </ul></div></nav>
+            <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a href="../about.html" class="nav-link"><i class="fas fa-info-circle"></i> About Us</a></li>
+            <li class="nav-item"><a href="../programs.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Programs</a></li>
+            <li class="nav-item"><a href="../academics.html" class="nav-link"><i class="fas fa-book-open"></i> Academics</a></li>
+            <li class="nav-item"><a href="../news.html" class="nav-link"><i class="fas fa-newspaper"></i> News & Events</a></li>
+            <li class="nav-item"><a href="../staff.html" class="nav-link"><i class="fas fa-users"></i> Staff</a></li>
+            <li class="nav-item"><a href="../contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul></div></nav>
     </header>
 
-    <div class="login-wrap">
-        <div class="login-box">
-            <div class="brand-block">
-                <img src="../Enugu-State-University-of-Science-and-Technology-logo.jpg" alt="ESUT Logo">
-                <div>
-                    <h1>Department of Psychology</h1>
-                    <p>Admin Portal</p>
-                </div>
-            </div>
-
-            <form id="loginForm" class="admin-form">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input id="username" name="username" type="text" placeholder="Enter username" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" name="password" type="password" placeholder="Enter password" required>
-                </div>
-
-                <button type="submit" class="primary-btn full-width">Login</button>
-                <p id="loginMessage" class="message" aria-live="polite"></p>
-            </form>
+    <div class="login-wrap"><div class="login-box">
+        <div class="brand-block">
+            <img src="../Enugu-State-University-of-Science-and-Technology-logo.jpg" alt="ESUT Logo">
+            <div><h1>Department of Psychology</h1><p>Admin Portal</p></div>
         </div>
-    </div>
+        <form id="loginForm" class="admin-form">
+            <div class="form-group"><label for="username">Username</label><input id="username" name="username" type="text" placeholder="Enter username" required></div>
+            <div class="form-group"><label for="password">Password</label><input id="password" name="password" type="password" placeholder="Enter password" required></div>
+            <button type="submit" class="primary-btn full-width">Login</button>
+            <p id="loginMessage" class="message" aria-live="polite"></p>
+        </form>
+    </div></div>
 
     <script src="../site-data.js"></script>
     <script src="../app.js"></script>
     <script>
-        // Handle login locally so a missing or unavailable auth API cannot trigger
-        // the browser's default form submission and refresh the page.
         const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', function (event) {
+        loginForm.addEventListener('submit', async function (event) {
             event.preventDefault();
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const message = document.getElementById('loginMessage');
-            const submitButton = loginForm.querySelector('button[type="submit"]');
-
-            if (username !== 'admin' || password !== 'iamadmin22#') {
-                message.textContent = 'Invalid username or password.';
-                message.style.color = '#b42318';
-                return;
-            }
+            const button = loginForm.querySelector('button[type="submit"]');
+            button.disabled = true;
+            button.textContent = 'Signing in...';
+            message.textContent = '';
 
             try {
+                const response = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'login', username, password })
+                });
+                const result = await response.json();
+                if (!response.ok || !result.success || !result.token) throw new Error(result.error || 'Invalid username or password.');
                 localStorage.setItem('esutAdminSession', JSON.stringify({
-                    username: 'admin',
-                    token: `esut_local_${Date.now()}_${Math.random().toString(36).slice(2, 16)}`,
+                    username,
+                    token: result.token,
                     expiresAt: Date.now() + 24 * 60 * 60 * 1000
                 }));
-                submitButton.disabled = true;
-                submitButton.textContent = 'Signing in...';
                 window.location.assign('dashboard.html');
             } catch (error) {
-                message.textContent = 'Could not start your session. Please enable browser storage and try again.';
+                message.textContent = error.message || 'Login failed. Check your connection and try again.';
                 message.style.color = '#b42318';
+                button.disabled = false;
+                button.textContent = 'Login';
             }
         });
     </script>
