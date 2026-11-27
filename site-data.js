@@ -42,7 +42,7 @@
 
     let dataCache = null;
     let cacheTimestamp = 0;
-    const CACHE_DURATION = 30000; // 30 seconds
+    const CACHE_DURATION = 0; // Always fetch fresh so main site reflects admin changes immediately
 
     function cloneData(data) {
         return JSON.parse(JSON.stringify(data));
@@ -166,10 +166,6 @@
         const newItem = { ...item, id: item.id || generateId(type.slice(0, -1)) };
         data[type].push(newItem);
         await saveData(data);
-
-        if (USE_API) {
-            await apiRequest(type, newItem, 'create');
-        }
         return newItem;
     }
 
@@ -179,10 +175,6 @@
         if (index !== -1) {
             data[type][index] = { ...data[type][index], ...item };
             await saveData(data);
-
-            if (USE_API) {
-                await apiRequest(type, data[type][index], 'update');
-            }
             return data[type][index];
         }
         return null;
@@ -192,10 +184,6 @@
         const data = await loadData();
         data[type] = data[type].filter(entry => entry.id !== id);
         await saveData(data);
-
-        if (USE_API) {
-            await apiRequest(type, { id }, 'delete');
-        }
         return true;
     }
 

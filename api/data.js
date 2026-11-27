@@ -83,6 +83,12 @@ export default async function handler(request, response) {
     if (request.method === 'POST') {
         const { type, item, action } = request.body;
 
+        // Handle full data replacement (type: 'all')
+        if (type === 'all' && item) {
+            await saveData(item);
+            return response.status(200).json({ success: true, data: item });
+        }
+
         const data = await getData();
 
         if (action === 'delete' && type && item?.id) {
@@ -103,6 +109,7 @@ export default async function handler(request, response) {
 
         if (type && item) {
             const newItem = { ...item, id: item.id || generateId(type.slice(0, -1)) };
+            if (!data[type]) data[type] = [];
             data[type].push(newItem);
             await saveData(data);
             return response.status(200).json({ success: true, data, item: newItem });
