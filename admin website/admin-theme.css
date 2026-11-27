@@ -1,0 +1,125 @@
+/* ESUT Admin: calm maroon accents, dark charcoal surfaces, strong contrast. */
+:root {
+    color-scheme: light;
+    --admin-page-bg: #f2f0ef;
+    --admin-card: #ffffff;
+    --admin-paper: #faf9f8;
+    --admin-text: #211e1d;
+    --admin-muted: #514a48;
+    --admin-line: #c9c1be;
+    --admin-shadow: 0 8px 24px rgba(48, 30, 25, 0.09);
+    --admin-accent: #701500;
+    --admin-accent-hover: #541000;
+    --admin-button-text: #ffffff;
+    --admin-field-bg: #ffffff;
+}
+
+:root[data-admin-theme="dark"] {
+    color-scheme: dark;
+    --admin-page-bg: #151314;
+    --admin-card: #211e1f;
+    --admin-paper: #2b2728;
+    --admin-text: #f5f2f1;
+    --admin-muted: #d3cbca;
+    --admin-line: #625859;
+    --admin-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    --admin-accent: #914b46;
+    --admin-accent-hover: #a45b55;
+    --admin-button-text: #ffffff;
+    --admin-field-bg: #302b2c;
+}
+
+html, body { min-height: 100%; background: var(--admin-page-bg); color: var(--admin-text); }
+.dashboard-main { min-width: 0; }
+.topbar, .panel, .login-box {
+    background: var(--admin-card) !important;
+    color: var(--admin-text) !important;
+    border: 1px solid var(--admin-line);
+    box-shadow: var(--admin-shadow);
+}
+.topbar h1, .panel h2, .list-box h3, .item-meta strong,
+.panel h3, .panel h4 { color: var(--admin-text) !important; }
+.eyebrow { color: #701500 !important; }
+:root[data-admin-theme="dark"] .eyebrow { color: #efb4ac !important; }
+.item-meta span, .stat-card span, .panel p { color: var(--admin-muted); }
+.stat-card, .item-list li {
+    background: var(--admin-paper) !important;
+    border: 1px solid var(--admin-line) !important;
+    color: var(--admin-text) !important;
+}
+.list-box { border-color: var(--admin-line) !important; }
+.admin-form input, .admin-form select, .admin-form textarea,
+.login-box input, .login-box select, .login-box textarea {
+    background: var(--admin-field-bg) !important;
+    border: 1px solid var(--admin-line) !important;
+    color: var(--admin-text) !important;
+}
+.admin-form input::placeholder, .admin-form textarea::placeholder { color: var(--admin-muted) !important; opacity: 1; }
+.admin-form label, .login-box label { color: var(--admin-text) !important; }
+.admin-shell input[type="date"] { color-scheme: inherit; }
+
+/* High-contrast buttons: clear text and restrained ESUT maroon. */
+.admin-shell .primary-btn, .admin-shell #saveBtn {
+    color: var(--admin-button-text) !important;
+    background: var(--admin-accent) !important;
+    border: 1px solid var(--admin-accent) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+.admin-shell .primary-btn:hover, .admin-shell #saveBtn:hover {
+    color: #fff !important; background: var(--admin-accent-hover) !important;
+}
+.admin-shell .secondary-btn, .admin-shell .theme-toggle {
+    color: var(--admin-text) !important;
+    background: var(--admin-paper) !important;
+    border: 1px solid var(--admin-line) !important;
+    box-shadow: none !important;
+}
+.admin-shell .secondary-btn:hover, .admin-shell .theme-toggle:hover {
+    color: var(--admin-text) !important; background: var(--admin-card) !important; border-color: var(--admin-muted) !important;
+}
+.admin-shell .edit-btn {
+    color: var(--admin-accent) !important; background: transparent !important; border: 1px solid var(--admin-accent) !important;
+}
+.admin-shell .delete-btn {
+    color: #a32626 !important; background: transparent !important; border: 1px solid #a32626 !important;
+}
+:root[data-admin-theme="dark"] .admin-shell .edit-btn { color: #f0c1ba !important; border-color: #d2938b !important; }
+:root[data-admin-theme="dark"] .admin-shell .delete-btn { color: #ffc0bc !important; border-color: #e38c86 !important; }
+:root[data-admin-theme="dark"] .admin-shell .header .top-bar { background: #211e1f !important; color: var(--admin-text) !important; }
+:root[data-admin-theme="dark"] .admin-shell .header .logo-text h1,
+:root[data-admin-theme="dark"] .admin-shell .header .logo-subtext { color: var(--admin-text) !important; }
+:root[data-admin-theme="dark"] .admin-shell .nav-bar { background: #3a1513 !important; }
+:root[data-admin-theme="dark"] .admin-shell .nav-bar .nav-link { color: #fff !important; }
+:root[data-admin-theme="dark"] .admin-shell .admin-warning-banner {
+    background: #382d20 !important; border-color: #927143 !important; color: #ffd1ca !important;
+}
+:root[data-admin-theme="dark"] .admin-shell .admin-warning-banner i { color: #ffd1ca !important; }
+.admin-shell button:focus-visible, .admin-shell a:focus-visible, .admin-shell input:focus-visible,
+.admin-shell select:focus-visible, .admin-shell textarea:focus-visible { outline: 3px solid #b07a37; outline-offset: 2px; }
+
+.topbar-actions { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+.theme-toggle {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    min-height: 46px; padding: 10px 15px; border-radius: 10px; font-weight: 600; cursor: pointer;
+}
+.theme-toggle-icon { font-size: 1.1rem; line-height: 1; }
+
+.sync-status {
+    position: fixed; right: 20px; bottom: 20px; z-index: 2000;
+    max-width: min(460px, calc(100vw - 40px)); padding: 13px 16px;
+    border: 1px solid var(--admin-line); border-left: 5px solid var(--admin-accent);
+    border-radius: 8px; background: var(--admin-card); color: var(--admin-text);
+    box-shadow: var(--admin-shadow); font-size: 0.92rem; line-height: 1.5;
+}
+.sync-status[data-state="error"] { border-left-color: #b42318; }
+.sync-status[data-state="success"] { border-left-color: #35734a; }
+.sync-status[hidden] { display: none; }
+
+@media (max-width: 900px) { .topbar-actions { width: 100%; justify-content: space-between; } .theme-toggle, #saveBtn { flex: 1 1 auto; } }
+@media (max-width: 600px) {
+    .topbar-actions { flex-direction: column; align-items: stretch; }
+    .theme-toggle, #saveBtn { width: 100%; }
+    .sync-status { right: 12px; bottom: 12px; max-width: calc(100vw - 24px); }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; } }

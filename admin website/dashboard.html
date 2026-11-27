@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../responsive.css">
     <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin-theme.css">
 </head>
 <body id="dashboard-page" class="admin-shell">
     <header class="header">
@@ -42,12 +43,8 @@
         <aside class="sidebar">
             <div class="brand-block small">
                 <img src="../Enugu-State-University-of-Science-and-Technology-logo.jpg" alt="ESUT Logo">
-                <div>
-                    <h2>ESUT Admin</h2>
-                    <p>Psychology Dept.</p>
-                </div>
+                <div><h2>ESUT Admin</h2><p>Psychology Dept.</p></div>
             </div>
-
             <nav class="side-nav">
                 <a href="#overview" class="nav-link active">Overview</a>
                 <a href="#news" class="nav-link">News</a>
@@ -56,237 +53,91 @@
                 <a href="#staff" class="nav-link">Staff</a>
                 <a href="#gallery" class="nav-link">Gallery</a>
             </nav>
-
             <button id="logoutBtn" class="secondary-btn full-width">Logout</button>
         </aside>
 
         <main class="dashboard-main">
             <header class="topbar">
-                <div>
-                    <p class="eyebrow">Control Panel</p>
-                    <h1>Department Dashboard</h1>
+                <div><p class="eyebrow">Control Panel</p><h1>Department Dashboard</h1></div>
+                <div class="topbar-actions">
+                    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+                        <span class="theme-toggle-icon" aria-hidden="true">☾</span><span class="theme-toggle-label">Dark mode</span>
+                    </button>
+                    <button id="saveBtn" class="primary-btn">Save Updates</button>
                 </div>
-                <button id="saveBtn" class="primary-btn">Save Updates</button>
             </header>
 
+            <div class="admin-warning-banner" style="border-radius: 4px; color: #b42318; margin-bottom: 0;">
+                <i class="fas fa-exclamation-triangle" style="color: #b42318;"></i>
+                <span>ONLY AUTHORIZED ADMINS SHOULD BE HERE. DONT MAKE ANY CHANGES IF YOU DONT KNOW WHAT YOUR DOING....</span>
+            </div>
+
             <section id="overview" class="panel stats-panel">
-                <div class="admin-warning-banner">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>ONLY AUTHORIZED ADMINS SHOULD BE HERE. DONT MAKE ANY CHANGES IF YOU DONT KNOW WHAT YOUR DOING....</span>
-                </div>
-                <div class="stat-card">
-                    <span>News</span>
-                    <strong id="newsCount">0</strong>
-                </div>
-                <div class="stat-card">
-                    <span>Events</span>
-                    <strong id="eventCount">0</strong>
-                </div>
-                <div class="stat-card">
-                    <span>Courses</span>
-                    <strong id="courseCount">0</strong>
-                </div>
-                <div class="stat-card">
-                    <span>Staff</span>
-                    <strong id="staffCount">0</strong>
-                </div>
-                <div class="stat-card">
-                    <span>Gallery</span>
-                    <strong id="galleryCount">0</strong>
-                </div>
+                <div class="stat-card"><span>News</span><strong id="newsCount">0</strong></div>
+                <div class="stat-card"><span>Events</span><strong id="eventCount">0</strong></div>
+                <div class="stat-card"><span>Courses</span><strong id="courseCount">0</strong></div>
+                <div class="stat-card"><span>Staff</span><strong id="staffCount">0</strong></div>
+                <div class="stat-card"><span>Gallery</span><strong id="galleryCount">0</strong></div>
             </section>
 
             <section id="news" class="panel">
-                <div class="panel-head">
-                    <h2>News & Announcements</h2>
-                </div>
-
+                <div class="panel-head"><h2>News & Announcements</h2></div>
                 <form id="newsForm" class="admin-form grid-form">
-                    <div class="form-group">
-                        <label for="newsTitle">Title</label>
-                        <input id="newsTitle" name="title" type="text" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newsDate">Date</label>
-                        <input id="newsDate" name="date" type="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="newsCategory">Category</label>
-                        <select id="newsCategory" name="category">
-                            <option value="Announcement">Announcement</option>
-                            <option value="Seminar">Seminar</option>
-                            <option value="Admission">Admission</option>
-                            <option value="Important">Important</option>
-                        </select>
-                    </div>
-                    <div class="form-group full-span">
-                        <label for="newsSummary">Summary</label>
-                        <textarea id="newsSummary" name="summary" rows="3" required></textarea>
-                    </div>
-                    <div class="form-actions full-span">
-                        <button type="submit" class="primary-btn">Add News</button>
-                    </div>
+                    <div class="form-group"><label for="newsTitle">Title</label><input id="newsTitle" name="title" type="text" required></div>
+                    <div class="form-group"><label for="newsDate">Date</label><input id="newsDate" name="date" type="date" required></div>
+                    <div class="form-group"><label for="newsCategory">Category</label><select id="newsCategory" name="category"><option value="Announcement">Announcement</option><option value="Seminar">Seminar</option><option value="Admission">Admission</option><option value="Important">Important</option></select></div>
+                    <div class="form-group full-span"><label for="newsSummary">Summary</label><textarea id="newsSummary" name="summary" rows="3" required></textarea></div>
+                    <div class="form-actions full-span"><button type="submit" class="primary-btn">Add News</button></div>
                 </form>
-
-                <div class="list-box">
-                    <h3>Saved News</h3>
-                    <ul id="newsList" class="item-list"></ul>
-                </div>
+                <div class="list-box"><h3>Saved News</h3><ul id="newsList" class="item-list"></ul></div>
             </section>
 
             <section id="events" class="panel">
-                <div class="panel-head">
-                    <h2>Events</h2>
-                </div>
-
+                <div class="panel-head"><h2>Events</h2></div>
                 <form id="eventForm" class="admin-form grid-form">
-                    <div class="form-group">
-                        <label for="eventTitle">Event Title</label>
-                        <input id="eventTitle" name="title" type="text" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventDate">Date</label>
-                        <input id="eventDate" name="date" type="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventExpiryDate">Expiry Date</label>
-                        <input id="eventExpiryDate" name="expiryDate" type="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventVenue">Venue</label>
-                        <input id="eventVenue" name="venue" type="text" required>
-                    </div>
-                    <div class="form-group full-span">
-                        <label for="eventDescription">Description</label>
-                        <textarea id="eventDescription" name="description" rows="3" required></textarea>
-                    </div>
-                    <div class="form-actions full-span">
-                        <button type="submit" class="primary-btn">Add Event</button>
-                    </div>
+                    <div class="form-group"><label for="eventTitle">Event Title</label><input id="eventTitle" name="title" type="text" required></div>
+                    <div class="form-group"><label for="eventDate">Date</label><input id="eventDate" name="date" type="date" required></div>
+                    <div class="form-group"><label for="eventExpiryDate">Expiry Date</label><input id="eventExpiryDate" name="expiryDate" type="date" required></div>
+                    <div class="form-group"><label for="eventVenue">Venue</label><input id="eventVenue" name="venue" type="text" required></div>
+                    <div class="form-group full-span"><label for="eventDescription">Description</label><textarea id="eventDescription" name="description" rows="3" required></textarea></div>
+                    <div class="form-actions full-span"><button type="submit" class="primary-btn">Add Event</button></div>
                 </form>
-
-                <div class="list-box">
-                    <h3>Saved Events</h3>
-                    <ul id="eventList" class="item-list"></ul>
-                </div>
+                <div class="list-box"><h3>Saved Events</h3><ul id="eventList" class="item-list"></ul></div>
             </section>
 
             <section id="courses" class="panel">
-                <div class="panel-head">
-                    <h2>Courses</h2>
-                </div>
-
+                <div class="panel-head"><h2>Courses</h2></div>
                 <form id="courseForm" class="admin-form grid-form">
-                    <div class="form-group">
-                        <label for="courseLevel">Level</label>
-                        <select id="courseLevel" name="level">
-                            <option value="100 Level">100 Level</option>
-                            <option value="200 Level">200 Level</option>
-                            <option value="300 Level">300 Level</option>
-                            <option value="400 Level">400 Level</option>
-                            <option value="Postgraduate">Postgraduate</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="courseCode">Course Code</label>
-                        <input id="courseCode" name="code" type="text" placeholder="PSY 101" required>
-                    </div>
-                    <div class="form-group full-span">
-                        <label for="courseTitle">Course Title</label>
-                        <input id="courseTitle" name="title" type="text" required>
-                    </div>
-                    <div class="form-group full-span">
-                        <label for="courseDescription">Description</label>
-                        <textarea id="courseDescription" name="description" rows="3" required></textarea>
-                    </div>
-                    <div class="form-actions full-span">
-                        <button type="submit" class="primary-btn">Add Course</button>
-                    </div>
+                    <div class="form-group"><label for="courseLevel">Level</label><select id="courseLevel" name="level"><option value="100 Level">100 Level</option><option value="200 Level">200 Level</option><option value="300 Level">300 Level</option><option value="400 Level">400 Level</option><option value="Postgraduate">Postgraduate</option></select></div>
+                    <div class="form-group"><label for="courseCode">Course Code</label><input id="courseCode" name="code" type="text" placeholder="PSY 101" required></div>
+                    <div class="form-group full-span"><label for="courseTitle">Course Title</label><input id="courseTitle" name="title" type="text" required></div>
+                    <div class="form-group full-span"><label for="courseDescription">Description</label><textarea id="courseDescription" name="description" rows="3" required></textarea></div>
+                    <div class="form-actions full-span"><button type="submit" class="primary-btn">Add Course</button></div>
                 </form>
-
-                <div class="list-box">
-                    <h3>Saved Courses</h3>
-                    <ul id="courseList" class="item-list"></ul>
-                </div>
+                <div class="list-box"><h3>Saved Courses</h3><ul id="courseList" class="item-list"></ul></div>
             </section>
 
             <section id="staff" class="panel">
-                <div class="panel-head">
-                    <h2>Staff Profiles</h2>
-                </div>
-
+                <div class="panel-head"><h2>Staff Profiles</h2></div>
                 <form id="staffForm" class="admin-form grid-form">
-                    <div class="form-group">
-                        <label for="staffName">Name</label>
-                        <input id="staffName" name="name" type="text" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="staffRole">Role</label>
-                        <input id="staffRole" name="role" type="text" required>
-                    </div>
-                    <div class="form-group full-span">
-                        <label for="staffEmail">Email</label>
-                        <input id="staffEmail" name="email" type="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="staffCategory">Category</label>
-                        <select id="staffCategory" name="category">
-                            <option value="Academic">Academic</option>
-                            <option value="Administrative">Administrative</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="staffPhoto">Staff Photo</label>
-                        <div class="photo-upload-group">
-                            <label for="staffPhotoFile" class="file-input-label">
-                                <i class="fas fa-upload"></i> Choose Photo
-                            </label>
-                            <input type="file" id="staffPhotoFile" name="photoFile" accept="image/*">
-                            <img id="staffPhotoPreview" class="photo-preview" alt="Photo preview">
-                            <input type="hidden" id="staffPhoto" name="photo" value="">
-                        </div>
-                    </div>
-                    <div class="form-actions full-span">
-                        <button type="submit" class="primary-btn">Add Staff</button>
-                    </div>
+                    <div class="form-group"><label for="staffName">Name</label><input id="staffName" name="name" type="text" required></div>
+                    <div class="form-group"><label for="staffRole">Role</label><input id="staffRole" name="role" type="text" required></div>
+                    <div class="form-group full-span"><label for="staffEmail">Email</label><input id="staffEmail" name="email" type="email" required></div>
+                    <div class="form-group"><label for="staffCategory">Category</label><select id="staffCategory" name="category"><option value="Academic">Academic</option><option value="Administrative">Administrative</option></select></div>
+                    <div class="form-group"><label for="staffPhoto">Staff Photo</label><div class="photo-upload-group"><label for="staffPhotoFile" class="file-input-label"><i class="fas fa-upload"></i> Choose Photo</label><input type="file" id="staffPhotoFile" name="photoFile" accept="image/*"><img id="staffPhotoPreview" class="photo-preview" alt="Photo preview"><input type="hidden" id="staffPhoto" name="photo" value=""></div></div>
+                    <div class="form-actions full-span"><button type="submit" class="primary-btn">Add Staff</button></div>
                 </form>
-
-                <div class="list-box">
-                    <h3>Saved Staff</h3>
-                    <ul id="staffList" class="item-list"></ul>
-                </div>
+                <div class="list-box"><h3>Saved Staff</h3><ul id="staffList" class="item-list"></ul></div>
             </section>
 
             <section id="gallery" class="panel">
-                <div class="panel-head">
-                    <h2>Photo Gallery</h2>
-                </div>
-
+                <div class="panel-head"><h2>Photo Gallery</h2></div>
                 <form id="galleryForm" class="admin-form grid-form">
-                    <div class="form-group full-span">
-                        <label for="galleryDescription">Description</label>
-                        <textarea id="galleryDescription" name="description" rows="3" placeholder="Describe this photo/event..." required></textarea>
-                    </div>
-                    <div class="form-group full-span">
-                        <label for="galleryImage">Gallery Image</label>
-                        <div class="photo-upload-group">
-                            <label for="galleryImageFile" class="file-input-label">
-                                <i class="fas fa-upload"></i> Choose Image
-                            </label>
-                            <input type="file" id="galleryImageFile" name="imageFile" accept="image/*">
-                            <img id="galleryImagePreview" class="photo-preview" alt="Image preview">
-                            <input type="hidden" id="galleryImage" name="image" value="">
-                        </div>
-                    </div>
-                    <div class="form-actions full-span">
-                        <button type="submit" class="primary-btn">Add to Gallery</button>
-                    </div>
+                    <div class="form-group full-span"><label for="galleryDescription">Description</label><textarea id="galleryDescription" name="description" rows="3" placeholder="Describe this photo/event..." required></textarea></div>
+                    <div class="form-group full-span"><label for="galleryImage">Gallery Image</label><div class="photo-upload-group"><label for="galleryImageFile" class="file-input-label"><i class="fas fa-upload"></i> Choose Image</label><input type="file" id="galleryImageFile" name="imageFile" accept="image/*"><img id="galleryImagePreview" class="photo-preview" alt="Image preview"><input type="hidden" id="galleryImage" name="image" value=""></div></div>
+                    <div class="form-actions full-span"><button type="submit" class="primary-btn">Add to Gallery</button></div>
                 </form>
-
-                <div class="list-box">
-                    <h3>Saved Gallery Images</h3>
-                    <ul id="galleryList" class="item-list gallery-item-list"></ul>
-                </div>
+                <div class="list-box"><h3>Saved Gallery Images</h3><ul id="galleryList" class="item-list gallery-item-list"></ul></div>
             </section>
         </main>
     </div>
@@ -294,5 +145,10 @@
     <script src="../site-data.js"></script>
     <script src="../app.js"></script>
     <script src="admin.js"></script>
+    <script src="admin-theme.js"></script>
+    <script type="module">
+        import { inject } from '@vercel/analytics';
+        inject();
+    </script>
 </body>
 </html>
