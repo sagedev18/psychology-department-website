@@ -208,3 +208,4 @@ node_modules/
 >>>>>>> 6dbc6aba7ceb384027b4a9ba7e03a23cfd576b58
 # admin website/ is kept as part of the project
 .vercel
+.env*
